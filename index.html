@@ -1,0 +1,565 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBKRIST Digital Library</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="images(3).jpeg">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">📚 <span>NBKRIST</span> Digital Library</div>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">🎓 AI&DS and IT Department</div>
+  <h1 class="hero-title">NBKR Institute of <span>Science & Technology</span></h1>
+  <p class="hero-sub">Your complete academic resource hub — textbooks, syllabi, and online learning platforms.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Years</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Semesters</div></div>
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Subjects</div></div>
+    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Books</div></div>
+  </div>
+</div>
+
+<div class="tabs-wrapper">
+  <button class="tab-btn active" onclick="switchTab('books',this)"><span class="tab-icon">📖</span> Text Books</button>
+  <button class="tab-btn" onclick="switchTab('syllabus',this)"><span class="tab-icon">📝</span> Syllabus</button>
+  <button class="tab-btn" onclick="switchTab('online',this)"><span class="tab-icon">🌐</span> Online Platforms</button>
+</div>
+
+<!-- ===== BOOKS TAB ===== -->
+<div id="tab-books" class="tab-panel active">
+<div class="year-grid">
+
+<!-- 1ST YEAR -->
+<div class="year-card y1" id="yb1">
+  <div class="year-header" onclick="toggleCard('yb1')">
+    <div class="year-icon">🎯</div>
+    <div class="year-info"><div class="year-name">1st Year</div><div class="year-count">2 Semesters · 11 Subjects</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <!-- SEM 1 -->
+    <div class="sem-block" id="sb-yb1-s1">
+      <div class="sem-header" onclick="toggleSem('sb-yb1-s1')">
+        <div class="sem-dot"></div><div class="sem-name">1st Semester</div><div class="sem-arrow">▶</div>
+      </div>
+      <div class="sem-body">
+        <div class="subject-item" id="sub-bee"><div class="subject-header" onclick="toggleSubject('sub-bee')"><div class="subject-dot"></div><div class="subject-name">Basic Electrical &amp; Electronics Engg.</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="bee/p-1/Basic Electrical Engineering.pdf" target="_blank"><span class="book-link-icon">📄</span>Basic Electrical Engineering – 3rd Ed.</a>
+          <a class="book-link" href="bee/p-1/Basics-of-Electrical-and-Electronics-Engineering-min-5-244.pdf" target="_blank"><span class="book-link-icon">📄</span>Notes Material – 1</a>
+          <a class="book-link" href="bee/p-1/Power System Engineering_S. Chakraborthy, Gupta and Bhatnagar-4-615.pdf" target="_blank"><span class="book-link-icon">📄</span>Power System Engineering – Chakraborthy</a>
+          <a class="book-link" href="bee/p-1/sem1_2-_basic-electrical_engineering_unit_1_2_3_4_5_6_7_8-3-198.pdf" target="_blank"><span class="book-link-icon">📄</span>Notes Material – 2</a>
+          <a class="book-link" href="bee/p-2/Digital-Electronics-text-book-1.pdf" target="_blank"><span class="book-link-icon">📄</span>Digital Electronics Textbook</a>
+          <a class="book-link" href="bee/p-2/Electronic Devices and Circuit Theory - 11th Edition (1).pdf" target="_blank"><span class="book-link-icon">📄</span>Electronic Devices &amp; Circuit Theory – 11th Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-ep"><div class="subject-header" onclick="toggleSubject('sub-ep')"><div class="subject-dot"></div><div class="subject-name">Engineering Physics</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="ep/2-physics-5-199.pdf" target="_blank"><span class="book-link-icon">📄</span>Notes Material – 1</a>
+          <a class="book-link" href="ep/ENGINEERING-PHYSICS-min-3-117.pdf" target="_blank"><span class="book-link-icon">📄</span>Notes Material – 2</a>
+          <a class="book-link" href="ep/FULLBOOKPHYSICS.pdf" target="_blank"><span class="book-link-icon">📄</span>Full Textbook</a>
+        </div></div>
+        <div class="subject-item" id="sub-eg"><div class="subject-header" onclick="toggleSubject('sub-eg')"><div class="subject-dot"></div><div class="subject-name">Engineering Graphics</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="eg/ENGINEERING DRAWING BY N.D BHATT-4-738.pdf" target="_blank"><span class="book-link-icon">📄</span>Engineering Drawing – N.D. Bhatt</a>
+        </div></div>
+        <div class="subject-item" id="sub-ip"><div class="subject-header" onclick="toggleSubject('sub-ip')"><div class="subject-dot"></div><div class="subject-name">Introduction to Programming (C)</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="ip/[Kernighan-Ritchie]The_C_Programming_Language.pdf" target="_blank"><span class="book-link-icon">📄</span>The C Programming Language – K&amp;R</a>
+          <a class="book-link" href="ip/C_Programming.pdf" target="_blank"><span class="book-link-icon">📄</span>C Programming</a>
+          <a class="book-link" href="ip/SCHAUMS_OUTLINE_OF_THEORY_AND_PROBLEMS_O.pdf" target="_blank"><span class="book-link-icon">📄</span>Schaum's Outline – Theory &amp; Problems</a>
+          <a class="book-link" href="ip/The.C.Programming.Language.2Nd.Ed Prentice.Hall.Brian.W.Kernighan.and.Dennis.M.Ritchie..pdf" target="_blank"><span class="book-link-icon">📄</span>C Programming Language – 2nd Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-m1"><div class="subject-header" onclick="toggleSubject('sub-m1')"><div class="subject-dot"></div><div class="subject-name">Linear Algebra &amp; Calculus</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="m1/23_12_2022_539602025-3-213.pdf" target="_blank"><span class="book-link-icon">📄</span>Notes Material – 1</a>
+          <a class="book-link" href="m1/Advanced Engneering Maths.pdf" target="_blank"><span class="book-link-icon">📄</span>Advanced Engineering Maths</a>
+          <a class="book-link" href="m1/Maths-Advanced Modern Engineering Mathematics 5th Ed.pdf" target="_blank"><span class="book-link-icon">📄</span>Advanced Modern Engineering Maths – 5th Ed.</a>
+          <a class="book-link" href="m1/Thomas_Calculus.pdf" target="_blank"><span class="book-link-icon">📄</span>Thomas Calculus</a>
+          <a class="book-link" href="m-2/Gilbert_Strang_Linear_Algebra_and_Its_Applicatio_230928_225121.pdf" target="_blank"><span class="book-link-icon">📄</span>Gilbert Strang – Linear Algebra</a>
+          <a class="book-link" href="m-2/Nicholson-OpenLAWA-2018A.pdf" target="_blank"><span class="book-link-icon">📄</span>Nicholson – Open Linear Algebra</a>
+        </div></div>
+        <div class="subject-item" id="sub-it"><div class="subject-header" onclick="toggleSubject('sub-it')"><div class="subject-dot"></div><div class="subject-name">IT Workshop</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="it/1BCOM6CA-Introduction-to-computers-&-Information-Technology-ENG.pdf" target="_blank"><span class="book-link-icon">📄</span>Intro to Computers &amp; IT</a>
+          <a class="book-link" href="it/95.pdf" target="_blank"><span class="book-link-icon">📄</span>Introduction to Information Technology</a>
+          <a class="book-link" href="it/Cisco.Press.IT.Essentials.PC.Hardware.and.Software.Labs.and.Study.Guide.3rd.Ed.pdf" target="_blank"><span class="book-link-icon">📄</span>Cisco IT Essentials – 3rd Ed.</a>
+        </div></div>
+      </div>
+    </div>
+    <!-- SEM 2 -->
+    <div class="sem-block" id="sb-yb1-s2">
+      <div class="sem-header" onclick="toggleSem('sb-yb1-s2')">
+        <div class="sem-dot"></div><div class="sem-name">2nd Semester</div><div class="sem-arrow">▶</div>
+      </div>
+      <div class="sem-body">
+        <div class="subject-item" id="sub-chem"><div class="subject-header" onclick="toggleSubject('sub-chem')"><div class="subject-dot"></div><div class="subject-name">Chemistry</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="chem/1621583343 (1).pdf" target="_blank"><span class="book-link-icon">📄</span>Atkins Physical Chemistry – 8th Ed.</a>
+          <a class="book-link" href="chem/Engg.Chemistry-4-111.pdf" target="_blank"><span class="book-link-icon">📄</span>Engineering Chemistry</a>
+          <a class="book-link" href="chem/Engineering Chemistry Jain n Jain.pdf" target="_blank"><span class="book-link-icon">📄</span>Engineering Chemistry – Jain &amp; Jain</a>
+        </div></div>
+        <div class="subject-item" id="sub-bc"><div class="subject-header" onclick="toggleSubject('sub-bc')"><div class="subject-dot"></div><div class="subject-name">Basic Civil Engineering</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="bc/101986842-basic-civil-engineering-s-s-bhavikatti.pdf" target="_blank"><span class="book-link-icon">📄</span>Basic Civil Engineering – Bhavikatti</a>
+          <a class="book-link" href="bc/BASIC_CIVIL_AND_MECHANICAL_ENGINEERING-3-250.pdf" target="_blank"><span class="book-link-icon">📄</span>Basic Civil &amp; Mechanical Engg. – 1</a>
+          <a class="book-link" href="bc/de4479d1234da19a11935c023d338121-3-174.pdf" target="_blank"><span class="book-link-icon">📄</span>Basic Civil &amp; Mechanical Engg. – 2</a>
+        </div></div>
+        <div class="subject-item" id="sub-bm"><div class="subject-header" onclick="toggleSubject('sub-bm')"><div class="subject-dot"></div><div class="subject-name">Basic Mechanical Engineering</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="bm/425803401-IC-Engines-by-V-Ganeshan-PDFDrive-com-pdf.pdf" target="_blank"><span class="book-link-icon">📄</span>IC Engines – V. Ganeshan</a>
+          <a class="book-link" href="bm/An Introduction to Mechanical Engineering.pdf" target="_blank"><span class="book-link-icon">📄</span>Introduction to Mechanical Engineering</a>
+          <a class="book-link" href="bm/pdfcoffee.com_theory-of-machines-by-s-s-rattan-pdf-free-bead69a6.pdf" target="_blank"><span class="book-link-icon">📄</span>Theory of Machines – S.S. Rattan</a>
+        </div></div>
+        <div class="subject-item" id="sub-ce"><div class="subject-header" onclick="toggleSubject('sub-ce')"><div class="subject-dot"></div><div class="subject-name">Communicative English</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="ce/Communicative-English-min.pdf" target="_blank"><span class="book-link-icon">📄</span>Communicative English Textbook</a>
+        </div></div>
+        <div class="subject-item" id="sub-ds"><div class="subject-header" onclick="toggleSubject('sub-ds')"><div class="subject-dot"></div><div class="subject-name">Data Structures</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="ds/Data Structures and Algorithm Analysis in C by Mark Allen Weiss.pdf" target="_blank"><span class="book-link-icon">📄</span>Data Structures &amp; Algorithm Analysis – Weiss</a>
+          <a class="book-link" href="ds/Fundamentals-of-Data-Structures-in-C-Ellis-Horowitz-Sartaj-Sahni-etc.-.pdf" target="_blank"><span class="book-link-icon">📄</span>Fundamentals of Data Structures in C – Horowitz</a>
+        </div></div>
+        <div class="subject-item" id="sub-m2"><div class="subject-header" onclick="toggleSubject('sub-m2')"><div class="subject-dot"></div><div class="subject-name">Differential Equations &amp; Vector Calculus</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="m1/23_12_2022_539602025-3-213.pdf" target="_blank"><span class="book-link-icon">📄</span>Notes Material – 1</a>
+          <a class="book-link" href="m1/Advanced Engneering Maths.pdf" target="_blank"><span class="book-link-icon">📄</span>Advanced Engineering Maths</a>
+          <a class="book-link" href="m1/Thomas_Calculus.pdf" target="_blank"><span class="book-link-icon">📄</span>Thomas Calculus</a>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2ND YEAR -->
+<div class="year-card y2" id="yb2">
+  <div class="year-header" onclick="toggleCard('yb2')">
+    <div class="year-icon">🚀</div>
+    <div class="year-info"><div class="year-name">2nd Year</div><div class="year-count">2 Semesters · 11 Subjects</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="sem-block" id="sb-yb2-s1">
+      <div class="sem-header" onclick="toggleSem('sb-yb2-s1')"><div class="sem-dot"></div><div class="sem-name">1st Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="sub-java"><div class="subject-header" onclick="toggleSubject('sub-java')"><div class="subject-dot"></div><div class="subject-name">Java Programming</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="java/j-1.pdf" target="_blank"><span class="book-link-icon">📄</span>Introduction to Programming Using Java – 1</a>
+          <a class="book-link" href="java/j-3.pdf" target="_blank"><span class="book-link-icon">��</span>Java 9 For Programmers</a>
+          <a class="book-link" href="java/j-4.pdf" target="_blank"><span class="book-link-icon">📄</span>Introduction to Java Programming – 8th Ed.</a>
+          <a class="book-link" href="java/j-5.pdf" target="_blank"><span class="book-link-icon">📄</span>Introduction to Java Programming – 10th Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-es"><div class="subject-header" onclick="toggleSubject('sub-es')"><div class="subject-dot"></div><div class="subject-name">Environmental Science</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="es/22080_270724125248_Anindita Basak - Environmental Studies-Pearson Education (2015).pdf" target="_blank"><span class="book-link-icon">📄</span>Environmental Studies – Pearson (2015)</a>
+          <a class="book-link" href="es/env.pdf" target="_blank"><span class="book-link-icon">📄</span>Environmental Studies – 2</a>
+        </div></div>
+        <div class="subject-item" id="sub-dbms"><div class="subject-header" onclick="toggleSubject('sub-dbms')"><div class="subject-dot"></div><div class="subject-name">Database Management Systems</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="dbms/Fundamentals_of_Database_Systems_6th_Edition-1.pdf" target="_blank"><span class="book-link-icon">📄</span>Fundamentals of Database Systems – 6th Ed.</a>
+          <a class="book-link" href="dbms/s_feuerstein_oracle-pl_sql-programming_6th-edition_2014.pdf" target="_blank"><span class="book-link-icon">📄</span>Oracle PL/SQL Programming – 6th Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-dmgt"><div class="subject-header" onclick="toggleSubject('sub-dmgt')"><div class="subject-dot"></div><div class="subject-name">Discrete Mathematics &amp; Graph Theory</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="dmgt/Discrete Mathematics and Its Applications, 7 edition - Rosen.pdf" target="_blank"><span class="book-link-icon">📄</span>Discrete Mathematics – Rosen 7th Ed.</a>
+          <a class="book-link" href="dmgt/Maths-Discrete Mathematics & its Applications 8th Ed.pdf" target="_blank"><span class="book-link-icon">📄</span>Discrete Mathematics – 8th Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-adsa"><div class="subject-header" onclick="toggleSubject('sub-adsa')"><div class="subject-dot"></div><div class="subject-name">Advanced Data Structures &amp; Algorithms</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="adsa/fundamentals-of-computer-algorithms-by-ellis-horowitz-1984.pdf" target="_blank"><span class="book-link-icon">📄</span>Fundamentals of Computer Algorithms – Horowitz</a>
+          <a class="book-link" href="adsa/horowitz-and-sahani-fundamentals-of-computer-algorithms-2nd-edition.pdf" target="_blank"><span class="book-link-icon">📄</span>Fundamentals of Computer Algorithms – 2nd Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-uhv"><div class="subject-header" onclick="toggleSubject('sub-uhv')"><div class="subject-dot"></div><div class="subject-name">UHV &amp; Ethical Conduct</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="uhv/uhv-1.pdf" target="_blank"><span class="book-link-icon">📄</span>UHV Textbook</a>
+        </div></div>
+      </div>
+    </div>
+    <div class="sem-block" id="sb-yb2-s2">
+      <div class="sem-header" onclick="toggleSem('sb-yb2-s2')"><div class="sem-dot"></div><div class="sem-name">2nd Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="sub-smds"><div class="subject-header" onclick="toggleSubject('sub-smds')"><div class="subject-dot"></div><div class="subject-name">Statistical Methods for Data Science</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="smds/Miller & Freund's Probability and Statistics for Engineers.pdf" target="_blank"><span class="book-link-icon">📄</span>Miller &amp; Freund's Probability &amp; Statistics</a>
+          <a class="book-link" href="smds/Statistical inference for data science.pdf" target="_blank"><span class="book-link-icon">📄</span>Statistical Inference for Data Science</a>
+        </div></div>
+        <div class="subject-item" id="sub-dlco"><div class="subject-header" onclick="toggleSubject('sub-dlco')"><div class="subject-dot"></div><div class="subject-name">Digital Logic &amp; Computer Organization</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="dlco/Azal2020-01-22-12-16-48-75016.pdf" target="_blank"><span class="book-link-icon">📄</span>Digital Logic Textbook – 1</a>
+          <a class="book-link" href="dlco/computer-systems-Architecture.pdf" target="_blank"><span class="book-link-icon">📄</span>Computer Systems Architecture</a>
+          <a class="book-link" href="dlco/Digital Design With an Introduction to the Verilog HDL, VHDL and Systemverilog 6th Ed.pdf" target="_blank"><span class="book-link-icon">📄</span>Digital Design with Verilog HDL – 6th Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-be"><div class="subject-header" onclick="toggleSubject('sub-be')"><div class="subject-dot"></div><div class="subject-name">Business Environment</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="be/Business Environment FInal ISBN_724.pdf" target="_blank"><span class="book-link-icon">📄</span>Business Environment – 1</a>
+          <a class="book-link" href="be/DCOM105_DCOM402_DMGT105_DMGT401_BUSINESS_ENVIRONMENT.pdf" target="_blank"><span class="book-link-icon">📄</span>Business Environment – 2</a>
+          <a class="book-link" href="be/IIMM_BE_Book.pdf" target="_blank"><span class="book-link-icon">📄</span>Business Environment – IIMM</a>
+        </div></div>
+        <div class="subject-item" id="sub-ai"><div class="subject-header" onclick="toggleSubject('sub-ai')"><div class="subject-dot"></div><div class="subject-name">Artificial Intelligence</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="ai/artificial intelligence structures and strategies for  complex problem solving.pdf" target="_blank"><span class="book-link-icon">📄</span>AI – Structures &amp; Strategies for Problem Solving</a>
+          <a class="book-link" href="ai/Artificial_Intelligence.pdf" target="_blank"><span class="book-link-icon">📄</span>Artificial Intelligence</a>
+          <a class="book-link" href="ai/Kevin Knight, Elaine Rich, B. Nair - Artificial Intelligence (2010, Tata McGraw-Hill Education Pvt. Ltd.) - libgen.lc.pdf" target="_blank"><span class="book-link-icon">📄</span>AI – Kevin Knight, Elaine Rich</a>
+          <a class="book-link" href="ai/preview-9781292153971_A27091185.pdf" target="_blank"><span class="book-link-icon">📄</span>AI: A Modern Approach – 3rd Ed. (Pearson)</a>
+        </div></div>
+        <div class="subject-item" id="sub-fs"><div class="subject-header" onclick="toggleSubject('sub-fs')"><div class="subject-dot"></div><div class="subject-name">Full Stack Development – 1</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="fs/Azal2020-01-22-01-38-51-40850.pdf" target="_blank"><span class="book-link-icon">📄</span>Internet &amp; WWW How to Program – 4th Ed.</a>
+          <a class="book-link" href="fs/deitel-internet-world-wide-web-how-to-program-2e-2001.pdf" target="_blank"><span class="book-link-icon">📄</span>Deitel – Internet &amp; WWW How to Program</a>
+          <a class="book-link" href="fs/Learning_PHP_A_Gentle_Introduction_to_the_Web_39_s_Most_Popular_Language.pdf" target="_blank"><span class="book-link-icon">📄</span>Learning PHP – A Gentle Introduction</a>
+        </div></div>
+        <div class="subject-item" id="sub-ids"><div class="subject-header" onclick="toggleSubject('sub-ids')"><div class="subject-dot"></div><div class="subject-name">Introduction to Data Science</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="ids/ids-1.pdf" target="_blank"><span class="book-link-icon">📄</span>Introduction to Data Science – 1</a>
+          <a class="book-link" href="ids/ids-2.pdf" target="_blank"><span class="book-link-icon">📄</span>Data Science from Scratch</a>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3RD YEAR -->
+<div class="year-card y3" id="yb3">
+  <div class="year-header" onclick="toggleCard('yb3')">
+    <div class="year-icon">⚡</div>
+    <div class="year-info"><div class="year-name">3rd Year</div><div class="year-count">2 Semesters · 9 Subjects</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="sem-block" id="sb-yb3-s1">
+      <div class="sem-header" onclick="toggleSem('sb-yb3-s1')"><div class="sem-dot"></div><div class="sem-name">1st Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="sub-cn"><div class="subject-header" onclick="toggleSubject('sub-cn')"><div class="subject-dot"></div><div class="subject-name">Computer Networking</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="cn/Computer Networking_ A Top-Down Approach 6th Edition.pdf" target="_blank"><span class="book-link-icon">📄</span>Computer Networking: A Top-Down Approach – 6th Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-genai"><div class="subject-header" onclick="toggleSubject('sub-genai')"><div class="subject-dot"></div><div class="subject-name">Generative AI</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="generativeai/generative-ai-harvard.pdf" target="_blank"><span class="book-link-icon">📄</span>Generative AI – Harvard</a>
+          <a class="book-link" href="generativeai/Generative-AI.pdf" target="_blank"><span class="book-link-icon">📄</span>Generative AI – 2</a>
+        </div></div>
+        <div class="subject-item" id="sub-co"><div class="subject-header" onclick="toggleSubject('sub-co')"><div class="subject-dot"></div><div class="subject-name">Computer Organization</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="co/Computer_Organization_5th_Edition.pdf" target="_blank"><span class="book-link-icon">📄</span>Computer Organization – 5th Ed.</a>
+          <a class="book-link" href="co/Computer-Organization-Architecture-Book-3.pdf" target="_blank"><span class="book-link-icon">📄</span>Computer Organization &amp; Architecture</a>
+        </div></div>
+        <div class="subject-item" id="sub-se"><div class="subject-header" onclick="toggleSubject('sub-se')"><div class="subject-dot"></div><div class="subject-name">Software Engineering</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="se/16_EBOOK-7th_ed_software_engineering_a_practitioners_approach_by_roger_s._pressman_.pdf" target="_blank"><span class="book-link-icon">📄</span>Software Engineering – Pressman 7th Ed.</a>
+        </div></div>
+      </div>
+    </div>
+    <div class="sem-block" id="sb-yb3-s2">
+      <div class="sem-header" onclick="toggleSem('sb-yb3-s2')"><div class="sem-dot"></div><div class="sem-name">2nd Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="sub-os"><div class="subject-header" onclick="toggleSubject('sub-os')"><div class="subject-dot"></div><div class="subject-name">Operating Systems</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="os/Silberschatz 9th edition.pdf" target="_blank"><span class="book-link-icon">📄</span>Operating System Concepts – Silberschatz 9th Ed.</a>
+        </div></div>
+        <div class="subject-item" id="sub-ml"><div class="subject-header" onclick="toggleSubject('sub-ml')"><div class="subject-dot"></div><div class="subject-name">Machine Learning</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="ml/Machine Learning for Absolute Beginners.pdf" target="_blank"><span class="book-link-icon">📄</span>Machine Learning for Absolute Beginners</a>
+          <a class="book-link" href="ml/Machine Learning for Dummies.pdf" target="_blank"><span class="book-link-icon">📄</span>Machine Learning for Dummies</a>
+        </div></div>
+        <div class="subject-item" id="sub-nlp"><div class="subject-header" onclick="toggleSubject('sub-nlp')"><div class="subject-dot"></div><div class="subject-name">Natural Language Processing</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="nlp/nlp-1.pdf" target="_blank"><span class="book-link-icon">📄</span>NLP – 1</a>
+          <a class="book-link" href="nlp/NLTK.pdf" target="_blank"><span class="book-link-icon">📄</span>NLTK Book</a>
+        </div></div>
+        <div class="subject-item" id="sub-dl"><div class="subject-header" onclick="toggleSubject('sub-dl')"><div class="subject-dot"></div><div class="subject-name">Deep Learning</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="dl/Deep Learning by Ian Goodfellow.pdf" target="_blank"><span class="book-link-icon">📄</span>Deep Learning – Ian Goodfellow</a>
+          <a class="book-link" href="dl/deeplearningwithpython.pdf" target="_blank"><span class="book-link-icon">📄</span>Deep Learning with Python</a>
+        </div></div>
+        <div class="subject-item" id="sub-dv"><div class="subject-header" onclick="toggleSubject('sub-dv')"><div class="subject-dot"></div><div class="subject-name">Data Visualization</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="book-link" href="datavis/Handbook_of_Data_Visualization.pdf" target="_blank"><span class="book-link-icon">📄</span>Handbook of Data Visualization</a>
+          <a class="book-link" href="datavis/sosulski-kristen-data-visualization-made-simple_-insights-into-becoming-visual-2019-routledge.pdf" target="_blank"><span class="book-link-icon">📄</span>Data Visualization Made Simple – Sosulski</a>
+          <a class="book-link" href="datavis/The-Data-Visualization-workshop.pdf" target="_blank"><span class="book-link-icon">📄</span>The Data Visualization Workshop</a>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4TH YEAR -->
+<div class="year-card y4" id="yb4">
+  <div class="year-header" onclick="toggleCard('yb4')">
+    <div class="year-icon">🏆</div>
+    <div class="year-info"><div class="year-name">4th Year</div><div class="year-count">Electives &amp; Advanced Topics</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="flat-subject" id="fs-bd"><div class="flat-subject-header" onclick="toggleFlat('fs-bd')"><div class="flat-subject-dot"></div><div class="flat-subject-name">Big Data Analytics</div><div class="flat-subject-arrow">▶</div></div><div class="flat-subject-body">
+      <a class="book-link" href="bd/Big Data Analytics by RaJ Kamal, Preethi Saxena,TMH.pdf" target="_blank"><span class="book-link-icon">📄</span>Big Data Analytics – Raj Kamal</a>
+      <a class="book-link" href="bd/Data Science _ Big Data Analytics ( PDFDrive ).pdf" target="_blank"><span class="book-link-icon">📄</span>Data Science &amp; Big Data Analytics</a>
+      <a class="book-link" href="bd/IntroductiontoBigDataAnalytics.pdf" target="_blank"><span class="book-link-icon">📄</span>Introduction to Big Data Analytics</a>
+    </div></div>
+    <div class="flat-subject" id="fs-bc"><div class="flat-subject-header" onclick="toggleFlat('fs-bc')"><div class="flat-subject-dot"></div><div class="flat-subject-name">Blockchain Technology</div><div class="flat-subject-arrow">▶</div></div><div class="flat-subject-body">
+      <a class="book-link" href="blockchain/BlockchainTextBook.pdf" target="_blank"><span class="book-link-icon">📄</span>Blockchain Textbook</a>
+      <a class="book-link" href="blockchain/Mastering_Blockchain_2nd_Edition.pdf" target="_blank"><span class="book-link-icon">📄</span>Mastering Blockchain – 2nd Ed.</a>
+      <a class="book-link" href="blockchain/River-Blockchain.pdf" target="_blank"><span class="book-link-icon">📄</span>River Blockchain</a>
+    </div></div>
+    <div class="flat-subject" id="fs-hrm"><div class="flat-subject-header" onclick="toggleFlat('fs-hrm')"><div class="flat-subject-dot"></div><div class="flat-subject-name">Human Resource Management</div><div class="flat-subject-arrow">▶</div></div><div class="flat-subject-body">
+      <a class="book-link" href="HRM/Human_Resource_Management_32088.pdf" target="_blank"><span class="book-link-icon">📄</span>Human Resource Management</a>
+      <a class="book-link" href="HRM/Human-Resource-Management-by-Pravin-Durai.pdf" target="_blank"><span class="book-link-icon">📄</span>HRM – Pravin Durai</a>
+      <a class="book-link" href="HRM/Symbiosis_HumanResourceManagement.pdf" target="_blank"><span class="book-link-icon">📄</span>Symbiosis HRM</a>
+    </div></div>
+    <div class="flat-subject" id="fs-rl"><div class="flat-subject-header" onclick="toggleFlat('fs-rl')"><div class="flat-subject-dot"></div><div class="flat-subject-name">Reinforcement Learning</div><div class="flat-subject-arrow">▶</div></div><div class="flat-subject-body">
+      <a class="book-link" href="rl/BartoSutton.pdf" target="_blank"><span class="book-link-icon">📄</span>Reinforcement Learning – Barto &amp; Sutton</a>
+      <a class="book-link" href="rl/RLCOURSECOMPLETE.pdf" target="_blank"><span class="book-link-icon">📄</span>RL Course Complete</a>
+      <a class="book-link" href="rl/SuttonBartoIPRLBook2ndEd.pdf" target="_blank"><span class="book-link-icon">📄</span>Sutton &amp; Barto RL Book – 2nd Ed.</a>
+    </div></div>
+    <div class="flat-subject" id="fs-pe"><div class="flat-subject-header" onclick="toggleFlat('fs-pe')"><div class="flat-subject-dot"></div><div class="flat-subject-name">Prompt Engineering</div><div class="flat-subject-arrow">▶</div></div><div class="flat-subject-body">
+      <a class="book-link" href="pe/book_english_version.pdf" target="_blank"><span class="book-link-icon">📄</span>Prompt Engineering Book</a>
+      <a class="book-link" href="pe/prompt-engineering-playbook-beta-v3.pdf" target="_blank"><span class="book-link-icon">📄</span>Prompt Engineering Playbook</a>
+      <a class="book-link" href="pe/The Art of Asking ChatGPT for High-Quality Answers--Ibrahim_John.pdf" target="_blank"><span class="book-link-icon">📄</span>The Art of Asking ChatGPT – Ibrahim John</a>
+    </div></div>
+  </div>
+</div>
+
+</div><!-- end year-grid -->
+</div><!-- end tab-books -->
+
+<!-- ===== SYLLABUS TAB ===== -->
+<div id="tab-syllabus" class="tab-panel">
+<div class="year-grid">
+
+<div class="year-card y1" id="ys1">
+  <div class="year-header" onclick="toggleCard('ys1')">
+    <div class="year-icon">🎯</div>
+    <div class="year-info"><div class="year-name">1st Year</div><div class="year-count">Syllabus PDFs</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="sem-block" id="ss-y1-s1">
+      <div class="sem-header" onclick="toggleSem('ss-y1-s1')"><div class="sem-dot"></div><div class="sem-name">1st Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <a class="syllabus-link" href="syllabus1/23ES11T3–BASIC ELECTRICAL & ELECTRONICS ENGINEERING.pdf" target="_blank"><span class="book-link-icon">📋</span>Basic Electrical &amp; Electronics Engineering</a>
+        <a class="syllabus-link" href="syllabus1/23BS11T1-ENGINEERING PHYSICS.pdf" target="_blank"><span class="book-link-icon">📋</span>Engineering Physics</a>
+        <a class="syllabus-link" href="syllabus1/23ES11T4–ENGINEERING GRAPHICS.pdf" target="_blank"><span class="book-link-icon">📋</span>Engineering Graphics</a>
+        <a class="syllabus-link" href="syllabus1/23ES11T1–INTRODUCTION TO PROGRAMMING.pdf" target="_blank"><span class="book-link-icon">📋</span>Introduction to Programming</a>
+        <a class="syllabus-link" href="syllabus1/23BS11T3-LINEAR ALGEBRA & CALCULUS.pdf" target="_blank"><span class="book-link-icon">📋</span>Linear Algebra &amp; Calculus</a>
+        <a class="syllabus-link" href="syllabus1/23ES11P3–IT WORKSHOP.pdf" target="_blank"><span class="book-link-icon">📋</span>IT Workshop</a>
+      </div>
+    </div>
+    <div class="sem-block" id="ss-y1-s2">
+      <div class="sem-header" onclick="toggleSem('ss-y1-s2')"><div class="sem-dot"></div><div class="sem-name">2nd Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <a class="syllabus-link" href="syllabus2/23BS12T2 - CHEMISTRY.pdf.crdownload" target="_blank"><span class="book-link-icon">📋</span>Chemistry</a>
+        <a class="syllabus-link" href="syllabus1/23ES12T1 - BASIC CIVIL AND MECHANICAL ENGINEERING.pdf" target="_blank"><span class="book-link-icon">📋</span>Basic Civil &amp; Mechanical Engineering</a>
+        <a class="syllabus-link" href="syllabus1/23BS12T5 - COMMUNICATIVE ENGLISH.pdf" target="_blank"><span class="book-link-icon">📋</span>Communicative English</a>
+        <a class="syllabus-link" href="syllabus1/23CS12T1 – DATA STRUCTURES.pdf" target="_blank"><span class="book-link-icon">📋</span>Data Structures</a>
+        <a class="syllabus-link" href="syllabus1/23BS12T4 - DIFFERENTIAL EQUATIONS & VECTOR CALCULUS.pdf" target="_blank"><span class="book-link-icon">📋</span>Differential Equations &amp; Vector Calculus</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="year-card y2" id="ys2">
+  <div class="year-header" onclick="toggleCard('ys2')">
+    <div class="year-icon">🚀</div>
+    <div class="year-info"><div class="year-name">2nd Year</div><div class="year-count">Syllabus PDFs</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="sem-block" id="ss-y2-s1">
+      <div class="sem-header" onclick="toggleSem('ss-y2-s1')"><div class="sem-dot"></div><div class="sem-name">1st Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <a class="syllabus-link" href="syllabus1/23CS21T2 - OBJECT-ORIENTED PROGRAMMING THROUGH JAVA.pdf" target="_blank"><span class="book-link-icon">📋</span>OOP Through Java</a>
+        <a class="syllabus-link" href="syllabus1/23AC21T1- ENVIRONMENTAL SCIENCE.pdf" target="_blank"><span class="book-link-icon">📋</span>Environmental Science</a>
+        <a class="syllabus-link" href="syllabus1/23AD21T1 - DATABASE MANAGEMENT SYSTEMS.pdf" target="_blank"><span class="book-link-icon">📋</span>Database Management Systems</a>
+        <a class="syllabus-link" href="syllabus1/23BS21T5 -DISCRETE MATHEMATICS & GRAPH THEORY.pdf" target="_blank"><span class="book-link-icon">📋</span>Discrete Mathematics &amp; Graph Theory</a>
+        <a class="syllabus-link" href="syllabus1/23CS21T1 - ADVANCED DATA STRUCTURES & ALGORITHM ANALYSIS.pdf" target="_blank"><span class="book-link-icon">📋</span>Advanced Data Structures &amp; Algorithm Analysis</a>
+        <a class="syllabus-link" href="syllabus1/23BS21T6 - UNIVERSAL HUMAN VALUES–UNDERSTANDING HARMONY AND ETHICAL HUMAN CONDUCT.pdf" target="_blank"><span class="book-link-icon">📋</span>UHV &amp; Ethical Conduct</a>
+      </div>
+    </div>
+    <div class="sem-block" id="ss-y2-s2">
+      <div class="sem-header" onclick="toggleSem('ss-y2-s2')"><div class="sem-dot"></div><div class="sem-name">2nd Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <a class="syllabus-link" href="syllabus1/23BS22T3 - STATISTICAL METHODS FOR DATA SCIENCE.pdf" target="_blank"><span class="book-link-icon">📋</span>Statistical Methods for Data Science</a>
+        <a class="syllabus-link" href="syllabus1/23CS22T2 - DIGITAL LOGIC & COMPUTER ORGANIZATION.pdf" target="_blank"><span class="book-link-icon">📋</span>Digital Logic &amp; Computer Organization</a>
+        <a class="syllabus-link" href="syllabus1/23BS22T5 - BUSINESS ENVIRONMENT.pdf" target="_blank"><span class="book-link-icon">📋</span>Business Environment</a>
+        <a class="syllabus-link" href="syllabus1/23CA22T1- ARTIFICIAL INTELLIGENCE.pdf" target="_blank"><span class="book-link-icon">📋</span>Artificial Intelligence</a>
+        <a class="syllabus-link" href="syllabus1/23CS22SC - FULL STACK DEVELOPMENT – 1.pdf" target="_blank"><span class="book-link-icon">📋</span>Full Stack Development – 1</a>
+        <a class="syllabus-link" href="syllabus1/23CD22T2- INTRODUCTION TO DATA SCIENCE.pdf" target="_blank"><span class="book-link-icon">📋</span>Introduction to Data Science</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="year-card y3" id="ys3">
+  <div class="year-header" onclick="toggleCard('ys3')">
+    <div class="year-icon">⚡</div>
+    <div class="year-info"><div class="year-name">3rd Year</div><div class="year-count">Coming Soon</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <p style="color:var(--text-muted);font-size:0.82rem;padding:12px 8px;">Syllabus will be updated soon.</p>
+  </div>
+</div>
+
+<div class="year-card y4" id="ys4">
+  <div class="year-header" onclick="toggleCard('ys4')">
+    <div class="year-icon">🏆</div>
+    <div class="year-info"><div class="year-name">4th Year</div><div class="year-count">Coming Soon</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <p style="color:var(--text-muted);font-size:0.82rem;padding:12px 8px;">Syllabus will be updated soon.</p>
+  </div>
+</div>
+
+</div>
+</div><!-- end tab-syllabus -->
+
+<!-- ===== ONLINE PLATFORMS TAB ===== -->
+<div id="tab-online" class="tab-panel">
+<div class="year-grid">
+
+<div class="year-card y1" id="yo1">
+  <div class="year-header" onclick="toggleCard('yo1')">
+    <div class="year-icon">🎯</div>
+    <div class="year-info"><div class="year-name">1st Year</div><div class="year-count">Online Resources</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="sem-block" id="so-y1-s1">
+      <div class="sem-header" onclick="toggleSem('so-y1-s1')"><div class="sem-dot"></div><div class="sem-name">1st Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="so-bee"><div class="subject-header" onclick="toggleSubject('so-bee')"><div class="subject-dot"></div><div class="subject-name">Basic Electrical &amp; Electronics Engg.</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/basic-electrical-and-electronics-engineering/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – BEE</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+        <div class="subject-item" id="so-ep"><div class="subject-header" onclick="toggleSubject('so-ep')"><div class="subject-dot"></div><div class="subject-name">Engineering Physics</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/engineering-physics/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – Engineering Physics</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+        <div class="subject-item" id="so-eg"><div class="subject-header" onclick="toggleSubject('so-eg')"><div class="subject-dot"></div><div class="subject-name">Engineering Graphics</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/engineering-graphics/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – Engineering Graphics</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+        <div class="subject-item" id="so-ip"><div class="subject-header" onclick="toggleSubject('so-ip')"><div class="subject-dot"></div><div class="subject-name">Introduction to Programming</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/c-programming-language/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – C Programming</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+        <div class="subject-item" id="so-m1"><div class="subject-header" onclick="toggleSubject('so-m1')"><div class="subject-dot"></div><div class="subject-name">Linear Algebra &amp; Calculus</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.khanacademy.org/math/linear-algebra" target="_blank"><span class="book-link-icon">🌐</span>Khan Academy – Linear Algebra</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+        <div class="subject-item" id="so-it"><div class="subject-header" onclick="toggleSubject('so-it')"><div class="subject-dot"></div><div class="subject-name">IT Workshop</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/it-workshop/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – IT Workshop</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+      </div>
+    </div>
+    <div class="sem-block" id="so-y1-s2">
+      <div class="sem-header" onclick="toggleSem('so-y1-s2')"><div class="sem-dot"></div><div class="sem-name">2nd Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="so-chem"><div class="subject-header" onclick="toggleSubject('so-chem')"><div class="subject-dot"></div><div class="subject-name">Chemistry</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/chemistry/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – Chemistry</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+        <div class="subject-item" id="so-ds"><div class="subject-header" onclick="toggleSubject('so-ds')"><div class="subject-dot"></div><div class="subject-name">Data Structures</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/data-structures/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – Data Structures</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="year-card y2" id="yo2">
+  <div class="year-header" onclick="toggleCard('yo2')">
+    <div class="year-icon">��</div>
+    <div class="year-info"><div class="year-name">2nd Year</div><div class="year-count">Online Resources</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="sem-block" id="so-y2-s1">
+      <div class="sem-header" onclick="toggleSem('so-y2-s1')"><div class="sem-dot"></div><div class="sem-name">1st Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="so-java"><div class="subject-header" onclick="toggleSubject('so-java')"><div class="subject-dot"></div><div class="subject-name">Java Programming</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/java/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – Java</a>
+          <a class="platform-link" href="https://www.javatpoint.com/java-tutorial" target="_blank"><span class="book-link-icon">🌐</span>JavaTpoint – Java Tutorial</a>
+        </div></div>
+        <div class="subject-item" id="so-dbms2"><div class="subject-header" onclick="toggleSubject('so-dbms2')"><div class="subject-dot"></div><div class="subject-name">Database Management Systems</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/dbms/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – DBMS</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank"><span class="book-link-icon">▶️</span>YouTube Playlist</a>
+        </div></div>
+        <div class="subject-item" id="so-adsa2"><div class="subject-header" onclick="toggleSubject('so-adsa2')"><div class="subject-dot"></div><div class="subject-name">Advanced DSA</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.geeksforgeeks.org/advanced-data-structures/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – Advanced DSA</a>
+          <a class="platform-link" href="https://leetcode.com/" target="_blank"><span class="book-link-icon">🌐</span>LeetCode – Practice Problems</a>
+        </div></div>
+      </div>
+    </div>
+    <div class="sem-block" id="so-y2-s2">
+      <div class="sem-header" onclick="toggleSem('so-y2-s2')"><div class="sem-dot"></div><div class="sem-name">2nd Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="so-ai2"><div class="subject-header" onclick="toggleSubject('so-ai2')"><div class="subject-dot"></div><div class="subject-name">Artificial Intelligence</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.coursera.org/learn/ai-for-everyone" target="_blank"><span class="book-link-icon">🌐</span>Coursera – AI for Everyone</a>
+          <a class="platform-link" href="https://www.geeksforgeeks.org/artificial-intelligence/" target="_blank"><span class="book-link-icon">🌐</span>GeeksforGeeks – AI</a>
+        </div></div>
+        <div class="subject-item" id="so-ids2"><div class="subject-header" onclick="toggleSubject('so-ids2')"><div class="subject-dot"></div><div class="subject-name">Introduction to Data Science</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.kaggle.com/learn" target="_blank"><span class="book-link-icon">🌐</span>Kaggle Learn</a>
+          <a class="platform-link" href="https://www.coursera.org/specializations/jhu-data-science" target="_blank"><span class="book-link-icon">🌐</span>Coursera – Data Science Specialization</a>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="year-card y3" id="yo3">
+  <div class="year-header" onclick="toggleCard('yo3')">
+    <div class="year-icon">⚡</div>
+    <div class="year-info"><div class="year-name">3rd Year</div><div class="year-count">Online Resources</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="sem-block" id="so-y3-s1">
+      <div class="sem-header" onclick="toggleSem('so-y3-s1')"><div class="sem-dot"></div><div class="sem-name">1st Semester</div><div class="sem-arrow">▶</div></div>
+      <div class="sem-body">
+        <div class="subject-item" id="so-ml"><div class="subject-header" onclick="toggleSubject('so-ml')"><div class="subject-dot"></div><div class="subject-name">Machine Learning</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.coursera.org/learn/machine-learning" target="_blank"><span class="book-link-icon">🌐</span>Coursera – Andrew Ng ML Course</a>
+          <a class="platform-link" href="https://www.kaggle.com/learn/intro-to-machine-learning" target="_blank"><span class="book-link-icon">🌐</span>Kaggle – Intro to ML</a>
+        </div></div>
+        <div class="subject-item" id="so-dl2"><div class="subject-header" onclick="toggleSubject('so-dl2')"><div class="subject-dot"></div><div class="subject-name">Deep Learning</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://www.deeplearning.ai/" target="_blank"><span class="book-link-icon">🌐</span>DeepLearning.AI</a>
+          <a class="platform-link" href="https://www.fast.ai/" target="_blank"><span class="book-link-icon">🌐</span>Fast.ai – Practical Deep Learning</a>
+        </div></div>
+        <div class="subject-item" id="so-nlp2"><div class="subject-header" onclick="toggleSubject('so-nlp2')"><div class="subject-dot"></div><div class="subject-name">Natural Language Processing</div><div class="subject-arrow">▶</div></div><div class="subject-body">
+          <a class="platform-link" href="https://huggingface.co/learn/nlp-course" target="_blank"><span class="book-link-icon">🌐</span>HuggingFace NLP Course</a>
+          <a class="platform-link" href="https://www.nltk.org/book/" target="_blank"><span class="book-link-icon">🌐</span>NLTK Book Online</a>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="year-card y4" id="yo4">
+  <div class="year-header" onclick="toggleCard('yo4')">
+    <div class="year-icon">🏆</div>
+    <div class="year-info"><div class="year-name">4th Year</div><div class="year-count">Online Resources</div></div>
+    <div class="year-toggle">▼</div>
+  </div>
+  <div class="year-body">
+    <div class="flat-subject" id="fo-bd"><div class="flat-subject-header" onclick="toggleFlat('fo-bd')"><div class="flat-subject-dot"></div><div class="flat-subject-name">Big Data</div><div class="flat-subject-arrow">▶</div></div><div class="flat-subject-body">
+      <a class="platform-link" href="https://www.coursera.org/specializations/big-data" target="_blank"><span class="book-link-icon">🌐</span>Coursera – Big Data Specialization</a>
+      <a class="platform-link" href="https://www.udemy.com/course/the-ultimate-hands-on-hadoop/" target="_blank"><span class="book-link-icon">🌐</span>Udemy – Hadoop &amp; Big Data</a>
+    </div></div>
+    <div class="flat-subject" id="fo-rl"><div class="flat-subject-header" onclick="toggleFlat('fo-rl')"><div class="flat-subject-dot"></div><div class="flat-subject-name">Reinforcement Learning</div><div class="flat-subject-arrow">▶</div></div><div class="flat-subject-body">
+      <a class="platform-link" href="https://www.coursera.org/specializations/reinforcement-learning" target="_blank"><span class="book-link-icon">🌐</span>Coursera – RL Specialization</a>
+      <a class="platform-link" href="https://spinningup.openai.com/" target="_blank"><span class="book-link-icon">🌐</span>OpenAI Spinning Up</a>
+    </div></div>
+  </div>
+</div>
+
+</div>
+</div><!-- end tab-online -->
+
+<footer>
+  <span>© 2024 NBKR Institute of Science and Technology</span> · AI&amp;DS and IT Department Digital Library
+</footer>
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleCard(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+function toggleSem(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+function toggleSubject(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+function toggleFlat(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>
