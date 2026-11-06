@@ -8,23 +8,20 @@
 </head>
 <body>
 
-<!-- ANIMATED BACKGROUND -->
-<div class="bg-canvas">
-  <div class="bg-orb bg-orb-1"></div>
-  <div class="bg-orb bg-orb-2"></div>
-  <div class="bg-orb bg-orb-3"></div>
-  <div id="particles"></div>
+<!-- BACKGROUND -->
+<div class="bg">
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+  <div id="pts"></div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <a class="logo" href="index.html">
-    <div class="logo-box">📚</div>NBKRIST Library
-  </a>
+  <a class="logo" href="index.html"><div class="logo-box">📚</div>NBKRIST Library</a>
   <div class="nav-pills">
     <button class="np on" onclick="switchTab('books',this)">📖 Books</button>
     <button class="np" onclick="switchTab('syllabus',this)">📝 Syllabus</button>
     <button class="np" onclick="switchTab('online',this)">🌐 Online</button>
+    <button class="np" onclick="switchTab('tools',this)">🛠 Tools</button>
   </div>
   <div class="nav-r"><a href="about.html">About</a></div>
 </nav>
@@ -34,7 +31,7 @@
   <div class="hero-left">
     <div class="chip"><span class="chip-dot"></span>AI&DS · IT Department · NBKRIST</div>
     <h1>Your Complete<br><em>Academic Library</em></h1>
-    <p>Textbooks, syllabi &amp; online platforms for all 4 years — everything in one place.</p>
+    <p>Textbooks, syllabi, online platforms &amp; developer tools — everything for all 4 years in one place.</p>
     <div class="search-box">
       <span class="si">🔍</span>
       <input id="si" type="text" placeholder="Search books, subjects, topics…" oninput="doSearch(this.value)" autocomplete="off">
@@ -54,30 +51,35 @@
   <button class="mt on" onclick="switchTab('books',this)">📖 Books</button>
   <button class="mt" onclick="switchTab('syllabus',this)">📝 Syllabus</button>
   <button class="mt" onclick="switchTab('online',this)">🌐 Online</button>
+  <button class="mt" onclick="switchTab('tools',this)">🛠 Tools</button>
 </div>
 
 <!-- SEARCH RESULTS -->
-<div class="sr" id="sr"><h5 id="src"></h5><div id="srl"></div></div>
+<div class="sr-wrap" id="sr"><h5 id="src"></h5><div id="srl"></div></div>
 
-<!-- ══════════════════════════════════════
-     BOOKS TAB
-══════════════════════════════════════ -->
+<!-- ══════════════════ BOOKS TAB ══════════════════ -->
 <div id="tab-books" class="tab-panel active">
+
+<!-- NOTICE -->
+<div class="notice">
+  <span class="notice-icon">💡</span>
+  <div class="notice-text">Click on any <b>Year header</b> below to expand/collapse it. Click on a <b>Semester</b> to see subjects, then click a subject to see books.</div>
+</div>
 
 <!-- PROGRESS -->
 <div class="prog-wrap" id="pw">
   <div class="prog-card">
-    <div class="prog-head">📊 Reading Progress</div>
+    <div class="prog-head">📊 Reading Progress — click a bar to jump to that year</div>
     <div class="prog-grid">
-      <div class="pi" onclick="openYear(1)"><div class="pi-lbl">1st Year</div><div class="pi-bar"><div class="pi-fill" id="pf1"></div></div><div class="pi-txt" id="pt1">0 books</div></div>
-      <div class="pi" onclick="openYear(2)"><div class="pi-lbl">2nd Year</div><div class="pi-bar"><div class="pi-fill" id="pf2"></div></div><div class="pi-txt" id="pt2">0 books</div></div>
-      <div class="pi" onclick="openYear(3)"><div class="pi-lbl">3rd Year</div><div class="pi-bar"><div class="pi-fill" id="pf3"></div></div><div class="pi-txt" id="pt3">0 books</div></div>
-      <div class="pi" onclick="openYear(4)"><div class="pi-lbl">4th Year</div><div class="pi-bar"><div class="pi-fill" id="pf4"></div></div><div class="pi-txt" id="pt4">0 books</div></div>
+      <div class="pi" onclick="openYear(1)"><div class="pi-lbl">1st Year</div><div class="pi-bar"><div class="pi-fill" id="pf1"></div></div><div class="pi-txt" id="pt1">0 / 0 books</div></div>
+      <div class="pi" onclick="openYear(2)"><div class="pi-lbl">2nd Year</div><div class="pi-bar"><div class="pi-fill" id="pf2"></div></div><div class="pi-txt" id="pt2">0 / 0 books</div></div>
+      <div class="pi" onclick="openYear(3)"><div class="pi-lbl">3rd Year</div><div class="pi-bar"><div class="pi-fill" id="pf3"></div></div><div class="pi-txt" id="pt3">0 / 0 books</div></div>
+      <div class="pi" onclick="openYear(4)"><div class="pi-lbl">4th Year</div><div class="pi-bar"><div class="pi-fill" id="pf4"></div></div><div class="pi-txt" id="pt4">0 / 0 books</div></div>
     </div>
   </div>
 </div>
 
-<!-- YEAR HEADERS -->
+<!-- YEAR LABELS -->
 <div class="year-labels">
   <div class="yl yl-1" id="yl1" onclick="toggleYear(1)"><span class="yl-icon">🎯</span><div class="yl-info"><div class="yl-name">1st Year</div><div class="yl-sub">11 Subjects</div></div><span class="yl-arr">▼</span></div>
   <div class="yl yl-2" id="yl2" onclick="toggleYear(2)"><span class="yl-icon">🚀</span><div class="yl-info"><div class="yl-name">2nd Year</div><div class="yl-sub">11 Subjects</div></div><span class="yl-arr">▼</span></div>
@@ -88,312 +90,256 @@
 <!-- YEAR COLUMNS -->
 <div class="year-cols">
 
-<!-- ───────────── COL 1 — 1ST YEAR ───────────── -->
-<div class="yp" id="yp1" data-col="1">
-<div class="yp-inner">
-
+<!-- ── 1ST YEAR ── -->
+<div class="yp" id="yp1" data-col="1"><div class="yp-inner">
   <div class="sem" id="y1s1">
-    <div class="sem-h" onclick="toggleSem('y1s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div>
+    <div class="sem-h" onclick="tS('y1s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div>
     <div class="sem-body">
-      <div class="subj" id="y1-bee"><div class="subj-h" onclick="toggleSubj('y1-bee')"><div class="subj-dot"></div><div class="subj-name">Basic Electrical &amp; Electronics Engg.</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-bee"><div class="subj-h" onclick="tSubj('y1-bee')"><div class="subj-dot"></div><div class="subj-name">Basic Electrical &amp; Electronics Engg.</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="https://www.geeksforgeeks.org/basic-electrical-and-electronics-engineering/" target="_blank" data-y="1"><span class="bi">🌐</span>GeeksforGeeks – BEE Notes</a>
         <a class="bl" href="https://nptel.ac.in/courses/108105053" target="_blank" data-y="1"><span class="bi">🎓</span>NPTEL – Basic Electrical Engg.</a>
         <a class="bl" href="https://www.youtube.com/playlist?list=PL9ooVrP1hQOGyFc60sExNX1qBWJyV5IMb" target="_blank" data-y="1"><span class="bi">▶️</span>YouTube – BEE Lectures</a>
       </div></div>
-      <div class="subj" id="y1-ep"><div class="subj-h" onclick="toggleSubj('y1-ep')"><div class="subj-dot"></div><div class="subj-name">Engineering Physics</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-ep"><div class="subj-h" onclick="tSubj('y1-ep')"><div class="subj-dot"></div><div class="subj-name">Engineering Physics</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="ep/2-physics-5-199.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Notes Material – 1</a>
         <a class="bl" href="ep/ENGINEERING-PHYSICS-min-3-117.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Notes Material – 2</a>
         <a class="bl" href="ep/FULLBOOKPHYSICS.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Full Textbook</a>
       </div></div>
-      <div class="subj" id="y1-eg"><div class="subj-h" onclick="toggleSubj('y1-eg')"><div class="subj-dot"></div><div class="subj-name">Engineering Graphics</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-eg"><div class="subj-h" onclick="tSubj('y1-eg')"><div class="subj-dot"></div><div class="subj-name">Engineering Graphics</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="eg/ENGINEERING DRAWING BY N.D BHATT-4-738.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Engineering Drawing – N.D. Bhatt</a>
       </div></div>
-      <div class="subj" id="y1-ip"><div class="subj-h" onclick="toggleSubj('y1-ip')"><div class="subj-dot"></div><div class="subj-name">Introduction to Programming (C)</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-ip"><div class="subj-h" onclick="tSubj('y1-ip')"><div class="subj-dot"></div><div class="subj-name">Introduction to Programming (C)</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="ip/[Kernighan-Ritchie]The_C_Programming_Language.pdf" target="_blank" data-y="1"><span class="bi">📄</span>C Programming Language – K&amp;R</a>
         <a class="bl" href="ip/C_Programming.pdf" target="_blank" data-y="1"><span class="bi">📄</span>C Programming</a>
         <a class="bl" href="ip/SCHAUMS_OUTLINE_OF_THEORY_AND_PROBLEMS_O.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Schaum's Outline</a>
         <a class="bl" href="ip/The.C.Programming.Language.2Nd.Ed Prentice.Hall.Brian.W.Kernighan.and.Dennis.M.Ritchie..pdf" target="_blank" data-y="1"><span class="bi">📄</span>C Programming – 2nd Ed.</a>
       </div></div>
-      <div class="subj" id="y1-m1"><div class="subj-h" onclick="toggleSubj('y1-m1')"><div class="subj-dot"></div><div class="subj-name">Linear Algebra &amp; Calculus</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-m1"><div class="subj-h" onclick="tSubj('y1-m1')"><div class="subj-dot"></div><div class="subj-name">Linear Algebra &amp; Calculus</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="m1/23_12_2022_539602025-3-213.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Notes Material</a>
         <a class="bl" href="m1/Maths-Advanced Modern Engineering Mathematics 5th Ed.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Advanced Modern Engg. Maths</a>
         <a class="bl" href="m1/Thomas_Calculus.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Thomas Calculus</a>
         <a class="bl" href="m-2/Gilbert_Strang_Linear_Algebra_and_Its_Applicatio_230928_225121.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Gilbert Strang – Linear Algebra</a>
         <a class="bl" href="m-2/Nicholson-OpenLAWA-2018A.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Nicholson – Open Linear Algebra</a>
       </div></div>
-      <div class="subj" id="y1-it"><div class="subj-h" onclick="toggleSubj('y1-it')"><div class="subj-dot"></div><div class="subj-name">IT Workshop</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-it"><div class="subj-h" onclick="tSubj('y1-it')"><div class="subj-dot"></div><div class="subj-name">IT Workshop</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="it/1BCOM6CA-Introduction-to-computers-&-Information-Technology-ENG.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Intro to Computers &amp; IT</a>
         <a class="bl" href="it/95.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Introduction to IT</a>
         <a class="bl" href="it/Cisco.Press.IT.Essentials.PC.Hardware.and.Software.Labs.and.Study.Guide.3rd.Ed.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Cisco IT Essentials</a>
       </div></div>
     </div>
   </div>
-
   <div class="sem" id="y1s2">
-    <div class="sem-h" onclick="toggleSem('y1s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div>
+    <div class="sem-h" onclick="tS('y1s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div>
     <div class="sem-body">
-      <div class="subj" id="y1-chem"><div class="subj-h" onclick="toggleSubj('y1-chem')"><div class="subj-dot"></div><div class="subj-name">Chemistry</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-chem"><div class="subj-h" onclick="tSubj('y1-chem')"><div class="subj-dot"></div><div class="subj-name">Chemistry</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="chem/1621583343 (1).pdf" target="_blank" data-y="1"><span class="bi">📄</span>Atkins Physical Chemistry</a>
         <a class="bl" href="chem/Engg.Chemistry-4-111.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Engineering Chemistry</a>
         <a class="bl" href="chem/Engineering Chemistry Jain n Jain.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Engg. Chemistry – Jain &amp; Jain</a>
       </div></div>
-      <div class="subj" id="y1-bc"><div class="subj-h" onclick="toggleSubj('y1-bc')"><div class="subj-dot"></div><div class="subj-name">Basic Civil Engineering</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-bc"><div class="subj-h" onclick="tSubj('y1-bc')"><div class="subj-dot"></div><div class="subj-name">Basic Civil Engineering</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="bc/101986842-basic-civil-engineering-s-s-bhavikatti.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Basic Civil Engg. – Bhavikatti</a>
         <a class="bl" href="bc/BASIC_CIVIL_AND_MECHANICAL_ENGINEERING-3-250.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Basic Civil &amp; Mechanical Engg.</a>
         <a class="bl" href="bc/de4479d1234da19a11935c023d338121-3-174.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Civil &amp; Mechanical Engg. – 2</a>
       </div></div>
-      <div class="subj" id="y1-bm"><div class="subj-h" onclick="toggleSubj('y1-bm')"><div class="subj-dot"></div><div class="subj-name">Basic Mechanical Engineering</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-bm"><div class="subj-h" onclick="tSubj('y1-bm')"><div class="subj-dot"></div><div class="subj-name">Basic Mechanical Engineering</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="bm/425803401-IC-Engines-by-V-Ganeshan-PDFDrive-com-pdf.pdf" target="_blank" data-y="1"><span class="bi">📄</span>IC Engines – V. Ganeshan</a>
         <a class="bl" href="bm/An Introduction to Mechanical Engineering.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Intro to Mechanical Engg.</a>
         <a class="bl" href="bm/pdfcoffee.com_theory-of-machines-by-s-s-rattan-pdf-free-bead69a6.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Theory of Machines – Rattan</a>
       </div></div>
-      <div class="subj" id="y1-ce"><div class="subj-h" onclick="toggleSubj('y1-ce')"><div class="subj-dot"></div><div class="subj-name">Communicative English</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-ce"><div class="subj-h" onclick="tSubj('y1-ce')"><div class="subj-dot"></div><div class="subj-name">Communicative English</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="ce/Communicative-English-min.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Communicative English Textbook</a>
       </div></div>
-      <div class="subj" id="y1-ds"><div class="subj-h" onclick="toggleSubj('y1-ds')"><div class="subj-dot"></div><div class="subj-name">Data Structures</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-ds"><div class="subj-h" onclick="tSubj('y1-ds')"><div class="subj-dot"></div><div class="subj-name">Data Structures</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="ds/Data Structures and Algorithm Analysis in C by Mark Allen Weiss.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Data Structures – Mark Allen Weiss</a>
         <a class="bl" href="ds/Fundamentals-of-Data-Structures-in-C-Ellis-Horowitz-Sartaj-Sahni-etc.-.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Fundamentals of Data Structures</a>
       </div></div>
-      <div class="subj" id="y1-m2"><div class="subj-h" onclick="toggleSubj('y1-m2')"><div class="subj-dot"></div><div class="subj-name">Diff. Equations &amp; Vector Calculus</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y1-m2"><div class="subj-h" onclick="tSubj('y1-m2')"><div class="subj-dot"></div><div class="subj-name">Diff. Equations &amp; Vector Calculus</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="m1/23_12_2022_539602025-3-213.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Notes Material</a>
         <a class="bl" href="m1/Thomas_Calculus.pdf" target="_blank" data-y="1"><span class="bi">📄</span>Thomas Calculus</a>
       </div></div>
     </div>
   </div>
+</div></div>
 
-</div>
-</div>
-
-<!-- ───────────── COL 2 — 2ND YEAR ───────────── -->
-<div class="yp" id="yp2" data-col="2">
-<div class="yp-inner">
-
+<!-- ── 2ND YEAR ── -->
+<div class="yp" id="yp2" data-col="2"><div class="yp-inner">
   <div class="sem" id="y2s1">
-    <div class="sem-h" onclick="toggleSem('y2s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div>
+    <div class="sem-h" onclick="tS('y2s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div>
     <div class="sem-body">
-      <div class="subj" id="y2-java"><div class="subj-h" onclick="toggleSubj('y2-java')"><div class="subj-dot"></div><div class="subj-name">Java Programming</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-java"><div class="subj-h" onclick="tSubj('y2-java')"><div class="subj-dot"></div><div class="subj-name">Java Programming</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="java/j-1.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Intro to Java – 1</a>
         <a class="bl" href="java/j-3.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Java 9 For Programmers</a>
         <a class="bl" href="java/j-4.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Intro to Java – 8th Ed.</a>
         <a class="bl" href="java/j-5.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Intro to Java – 10th Ed.</a>
       </div></div>
-      <div class="subj" id="y2-es"><div class="subj-h" onclick="toggleSubj('y2-es')"><div class="subj-dot"></div><div class="subj-name">Environmental Science</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-es"><div class="subj-h" onclick="tSubj('y2-es')"><div class="subj-dot"></div><div class="subj-name">Environmental Science</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="es/22080_270724125248_Anindita Basak - Environmental Studies-Pearson Education (2015).pdf" target="_blank" data-y="2"><span class="bi">📄</span>Environmental Studies – Pearson</a>
         <a class="bl" href="es/env.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Environmental Studies – 2</a>
       </div></div>
-      <div class="subj" id="y2-dbms"><div class="subj-h" onclick="toggleSubj('y2-dbms')"><div class="subj-dot"></div><div class="subj-name">Database Management Systems</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-dbms"><div class="subj-h" onclick="tSubj('y2-dbms')"><div class="subj-dot"></div><div class="subj-name">Database Management Systems</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="dbms/Fundamentals_of_Database_Systems_6th_Edition-1.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Fundamentals of DBMS – 6th Ed.</a>
         <a class="bl" href="dbms/s_feuerstein_oracle-pl_sql-programming_6th-edition_2014.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Oracle PL/SQL Programming</a>
       </div></div>
-      <div class="subj" id="y2-dmgt"><div class="subj-h" onclick="toggleSubj('y2-dmgt')"><div class="subj-dot"></div><div class="subj-name">Discrete Math &amp; Graph Theory</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-dmgt"><div class="subj-h" onclick="tSubj('y2-dmgt')"><div class="subj-dot"></div><div class="subj-name">Discrete Math &amp; Graph Theory</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="dmgt/Discrete Mathematics and Its Applications, 7 edition - Rosen.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Discrete Mathematics – Rosen</a>
         <a class="bl" href="dmgt/Maths-Discrete Mathematics & its Applications 8th Ed.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Discrete Mathematics – 8th Ed.</a>
       </div></div>
-      <div class="subj" id="y2-adsa"><div class="subj-h" onclick="toggleSubj('y2-adsa')"><div class="subj-dot"></div><div class="subj-name">Advanced DSA</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-adsa"><div class="subj-h" onclick="tSubj('y2-adsa')"><div class="subj-dot"></div><div class="subj-name">Advanced DSA</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="adsa/fundamentals-of-computer-algorithms-by-ellis-horowitz-1984.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Computer Algorithms – Horowitz</a>
         <a class="bl" href="adsa/horowitz-and-sahani-fundamentals-of-computer-algorithms-2nd-edition.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Computer Algorithms – 2nd Ed.</a>
       </div></div>
-      <div class="subj" id="y2-uhv"><div class="subj-h" onclick="toggleSubj('y2-uhv')"><div class="subj-dot"></div><div class="subj-name">UHV &amp; Ethical Conduct</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-uhv"><div class="subj-h" onclick="tSubj('y2-uhv')"><div class="subj-dot"></div><div class="subj-name">UHV &amp; Ethical Conduct</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="uhv/uhv-1.pdf" target="_blank" data-y="2"><span class="bi">📄</span>UHV Textbook</a>
       </div></div>
     </div>
   </div>
-
   <div class="sem" id="y2s2">
-    <div class="sem-h" onclick="toggleSem('y2s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div>
+    <div class="sem-h" onclick="tS('y2s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div>
     <div class="sem-body">
-      <div class="subj" id="y2-smds"><div class="subj-h" onclick="toggleSubj('y2-smds')"><div class="subj-dot"></div><div class="subj-name">Statistical Methods for DS</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-smds"><div class="subj-h" onclick="tSubj('y2-smds')"><div class="subj-dot"></div><div class="subj-name">Statistical Methods for DS</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="smds/Miller & Freund's Probability and Statistics for Engineers.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Miller &amp; Freund's Probability</a>
         <a class="bl" href="smds/Statistical inference for data science.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Statistical Inference for DS</a>
       </div></div>
-      <div class="subj" id="y2-dlco"><div class="subj-h" onclick="toggleSubj('y2-dlco')"><div class="subj-dot"></div><div class="subj-name">Digital Logic &amp; Computer Org.</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-dlco"><div class="subj-h" onclick="tSubj('y2-dlco')"><div class="subj-dot"></div><div class="subj-name">Digital Logic &amp; Computer Org.</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="dlco/Azal2020-01-22-12-16-48-75016.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Digital Logic Textbook</a>
         <a class="bl" href="dlco/computer-systems-Architecture.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Computer Systems Architecture</a>
         <a class="bl" href="dlco/Digital Design With an Introduction to the Verilog HDL, VHDL and Systemverilog 6th Ed.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Digital Design – Verilog 6th Ed.</a>
       </div></div>
-      <div class="subj" id="y2-be"><div class="subj-h" onclick="toggleSubj('y2-be')"><div class="subj-dot"></div><div class="subj-name">Business Environment</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-be"><div class="subj-h" onclick="tSubj('y2-be')"><div class="subj-dot"></div><div class="subj-name">Business Environment</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="be/Business Environment FInal ISBN_724.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Business Environment – 1</a>
         <a class="bl" href="be/DCOM105_DCOM402_DMGT105_DMGT401_BUSINESS_ENVIRONMENT.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Business Environment – 2</a>
         <a class="bl" href="be/IIMM_BE_Book.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Business Environment – IIMM</a>
       </div></div>
-      <div class="subj" id="y2-ai"><div class="subj-h" onclick="toggleSubj('y2-ai')"><div class="subj-dot"></div><div class="subj-name">Artificial Intelligence</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-ai"><div class="subj-h" onclick="tSubj('y2-ai')"><div class="subj-dot"></div><div class="subj-name">Artificial Intelligence</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="ai/artificial intelligence structures and strategies for  complex problem solving.pdf" target="_blank" data-y="2"><span class="bi">📄</span>AI – Structures &amp; Strategies</a>
         <a class="bl" href="ai/Artificial_Intelligence.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Artificial Intelligence</a>
         <a class="bl" href="ai/Kevin Knight, Elaine Rich, B. Nair - Artificial Intelligence (2010, Tata McGraw-Hill Education Pvt. Ltd.) - libgen.lc.pdf" target="_blank" data-y="2"><span class="bi">📄</span>AI – Kevin Knight &amp; Rich</a>
         <a class="bl" href="ai/preview-9781292153971_A27091185.pdf" target="_blank" data-y="2"><span class="bi">📄</span>AI: A Modern Approach</a>
       </div></div>
-      <div class="subj" id="y2-fs"><div class="subj-h" onclick="toggleSubj('y2-fs')"><div class="subj-dot"></div><div class="subj-name">Full Stack Development</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-fs"><div class="subj-h" onclick="tSubj('y2-fs')"><div class="subj-dot"></div><div class="subj-name">Full Stack Development</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="fs/Azal2020-01-22-01-38-51-40850.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Internet &amp; WWW How to Program</a>
         <a class="bl" href="fs/deitel-internet-world-wide-web-how-to-program-2e-2001.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Deitel – Internet &amp; WWW</a>
         <a class="bl" href="fs/Learning_PHP_A_Gentle_Introduction_to_the_Web_39_s_Most_Popular_Language.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Learning PHP</a>
       </div></div>
-      <div class="subj" id="y2-ids"><div class="subj-h" onclick="toggleSubj('y2-ids')"><div class="subj-dot"></div><div class="subj-name">Introduction to Data Science</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y2-ids"><div class="subj-h" onclick="tSubj('y2-ids')"><div class="subj-dot"></div><div class="subj-name">Introduction to Data Science</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="ids/ids-1.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Intro to Data Science – 1</a>
         <a class="bl" href="ids/ids-2.pdf" target="_blank" data-y="2"><span class="bi">📄</span>Data Science from Scratch</a>
       </div></div>
     </div>
   </div>
+</div></div>
 
-</div>
-</div>
-
-<!-- ───────────── COL 3 — 3RD YEAR ───────────── -->
-<div class="yp" id="yp3" data-col="3">
-<div class="yp-inner">
-
+<!-- ── 3RD YEAR ── -->
+<div class="yp" id="yp3" data-col="3"><div class="yp-inner">
   <div class="sem" id="y3s1">
-    <div class="sem-h" onclick="toggleSem('y3s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div>
+    <div class="sem-h" onclick="tS('y3s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div>
     <div class="sem-body">
-      <div class="subj" id="y3-cn"><div class="subj-h" onclick="toggleSubj('y3-cn')"><div class="subj-dot"></div><div class="subj-name">Computer Networking</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-cn"><div class="subj-h" onclick="tSubj('y3-cn')"><div class="subj-dot"></div><div class="subj-name">Computer Networking</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="cn/Computer Networking_ A Top-Down Approach 6th Edition.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Computer Networking – Top-Down</a>
       </div></div>
-      <div class="subj" id="y3-genai"><div class="subj-h" onclick="toggleSubj('y3-genai')"><div class="subj-dot"></div><div class="subj-name">Generative AI</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-genai"><div class="subj-h" onclick="tSubj('y3-genai')"><div class="subj-dot"></div><div class="subj-name">Generative AI</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="generativeai/generative-ai-harvard.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Generative AI – Harvard</a>
         <a class="bl" href="generativeai/Generative-AI.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Generative AI – 2</a>
       </div></div>
-      <div class="subj" id="y3-co"><div class="subj-h" onclick="toggleSubj('y3-co')"><div class="subj-dot"></div><div class="subj-name">Computer Organization</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-co"><div class="subj-h" onclick="tSubj('y3-co')"><div class="subj-dot"></div><div class="subj-name">Computer Organization</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="co/Computer_Organization_5th_Edition.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Computer Organization – 5th Ed.</a>
         <a class="bl" href="co/Computer-Organization-Architecture-Book-3.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Computer Org. &amp; Architecture</a>
       </div></div>
-      <div class="subj" id="y3-se"><div class="subj-h" onclick="toggleSubj('y3-se')"><div class="subj-dot"></div><div class="subj-name">Software Engineering</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-se"><div class="subj-h" onclick="tSubj('y3-se')"><div class="subj-dot"></div><div class="subj-name">Software Engineering</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="se/16_EBOOK-7th_ed_software_engineering_a_practitioners_approach_by_roger_s._pressman_.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Software Engineering – Pressman</a>
       </div></div>
     </div>
   </div>
-
   <div class="sem" id="y3s2">
-    <div class="sem-h" onclick="toggleSem('y3s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div>
+    <div class="sem-h" onclick="tS('y3s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div>
     <div class="sem-body">
-      <div class="subj" id="y3-os"><div class="subj-h" onclick="toggleSubj('y3-os')"><div class="subj-dot"></div><div class="subj-name">Operating Systems</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-os"><div class="subj-h" onclick="tSubj('y3-os')"><div class="subj-dot"></div><div class="subj-name">Operating Systems</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="os/Abraham Silberschatz-Operating System Concepts (9th,2012_12).pdf" target="_blank" data-y="3"><span class="bi">📄</span>OS Concepts – Silberschatz</a>
         <a class="bl" href="os/Silberschatz 9th edition.pdf" target="_blank" data-y="3"><span class="bi">📄</span>OS Concepts – 9th Ed.</a>
       </div></div>
-      <div class="subj" id="y3-ml"><div class="subj-h" onclick="toggleSubj('y3-ml')"><div class="subj-dot"></div><div class="subj-name">Machine Learning</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-ml"><div class="subj-h" onclick="tSubj('y3-ml')"><div class="subj-dot"></div><div class="subj-name">Machine Learning</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="ml/Machine Learning for Absolute Beginners.pdf" target="_blank" data-y="3"><span class="bi">📄</span>ML for Absolute Beginners</a>
         <a class="bl" href="ml/Machine Learning for Dummies.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Machine Learning for Dummies</a>
       </div></div>
-      <div class="subj" id="y3-nlp"><div class="subj-h" onclick="toggleSubj('y3-nlp')"><div class="subj-dot"></div><div class="subj-name">Natural Language Processing</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-nlp"><div class="subj-h" onclick="tSubj('y3-nlp')"><div class="subj-dot"></div><div class="subj-name">Natural Language Processing</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="nlp/nlp-1.pdf" target="_blank" data-y="3"><span class="bi">📄</span>NLP – 1</a>
         <a class="bl" href="nlp/NLTK.pdf" target="_blank" data-y="3"><span class="bi">📄</span>NLTK Book</a>
       </div></div>
-      <div class="subj" id="y3-dl"><div class="subj-h" onclick="toggleSubj('y3-dl')"><div class="subj-dot"></div><div class="subj-name">Deep Learning</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-dl"><div class="subj-h" onclick="tSubj('y3-dl')"><div class="subj-dot"></div><div class="subj-name">Deep Learning</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="dl/Deep Learning by Ian Goodfellow.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Deep Learning – Ian Goodfellow</a>
         <a class="bl" href="dl/deeplearningwithpython.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Deep Learning with Python</a>
       </div></div>
-      <div class="subj" id="y3-dv"><div class="subj-h" onclick="toggleSubj('y3-dv')"><div class="subj-dot"></div><div class="subj-name">Data Visualization</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="subj" id="y3-dv"><div class="subj-h" onclick="tSubj('y3-dv')"><div class="subj-dot"></div><div class="subj-name">Data Visualization</div><div class="subj-arr">▶</div></div><div class="subj-body">
         <a class="bl" href="datavis/Handbook_of_Data_Visualization.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Handbook of Data Visualization</a>
         <a class="bl" href="datavis/sosulski-kristen-data-visualization-made-simple_-insights-into-becoming-visual-2019-routledge.pdf" target="_blank" data-y="3"><span class="bi">📄</span>Data Visualization Made Simple</a>
         <a class="bl" href="datavis/The-Data-Visualization-workshop.pdf" target="_blank" data-y="3"><span class="bi">📄</span>The Data Visualization Workshop</a>
       </div></div>
     </div>
   </div>
+</div></div>
 
-</div>
-</div>
-
-<!-- ───────────── COL 4 — 4TH YEAR ───────────── -->
-<div class="yp" id="yp4" data-col="4">
-<div class="yp-inner">
-
-  <!-- SEMESTER 1 — all elective subjects -->
+<!-- ── 4TH YEAR ── -->
+<div class="yp" id="yp4" data-col="4"><div class="yp-inner">
   <div class="sem" id="y4s1">
-    <div class="sem-h" onclick="toggleSem('y4s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1 — Electives</div><div class="sem-arr">▶</div></div>
+    <div class="sem-h" onclick="tS('y4s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1 — Electives</div><div class="sem-arr">▶</div></div>
     <div class="sem-body">
-
-      <div class="flat" id="y4-bd">
-        <div class="flat-h" onclick="toggleFlat('y4-bd')"><div class="flat-dot"></div><div class="flat-name">Big Data Analytics</div><div class="flat-arr">▶</div></div>
-        <div class="flat-body">
-          <a class="bl" href="bd/Big Data Analytics by RaJ Kamal, Preethi Saxena,TMH.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Big Data Analytics – Raj Kamal</a>
-          <a class="bl" href="bd/Data Science _ Big Data Analytics ( PDFDrive ).pdf" target="_blank" data-y="4"><span class="bi">📄</span>Data Science &amp; Big Data</a>
-          <a class="bl" href="bd/IntroductiontoBigDataAnalytics.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Intro to Big Data Analytics</a>
-        </div>
-      </div>
-
-      <div class="flat" id="y4-bc">
-        <div class="flat-h" onclick="toggleFlat('y4-bc')"><div class="flat-dot"></div><div class="flat-name">Blockchain Technology</div><div class="flat-arr">▶</div></div>
-        <div class="flat-body">
-          <a class="bl" href="blockchain/BlockchainTextBook.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Blockchain Textbook</a>
-          <a class="bl" href="blockchain/Mastering_Blockchain_2nd_Edition.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Mastering Blockchain – 2nd Ed.</a>
-          <a class="bl" href="blockchain/River-Blockchain.pdf" target="_blank" data-y="4"><span class="bi">📄</span>River Blockchain</a>
-        </div>
-      </div>
-
-      <div class="flat" id="y4-hrm">
-        <div class="flat-h" onclick="toggleFlat('y4-hrm')"><div class="flat-dot"></div><div class="flat-name">Human Resource Management</div><div class="flat-arr">▶</div></div>
-        <div class="flat-body">
-          <a class="bl" href="HRM/Human_Resource_Management_32088.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Human Resource Management</a>
-          <a class="bl" href="HRM/Human-Resource-Management-by-Pravin-Durai.pdf" target="_blank" data-y="4"><span class="bi">📄</span>HRM – Pravin Durai</a>
-          <a class="bl" href="HRM/Symbiosis_HumanResourceManagement.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Symbiosis HRM</a>
-        </div>
-      </div>
-
-      <div class="flat" id="y4-rl">
-        <div class="flat-h" onclick="toggleFlat('y4-rl')"><div class="flat-dot"></div><div class="flat-name">Reinforcement Learning</div><div class="flat-arr">▶</div></div>
-        <div class="flat-body">
-          <a class="bl" href="rl/BartoSutton.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Reinforcement Learning – Barto &amp; Sutton</a>
-          <a class="bl" href="rl/RLCOURSECOMPLETE.pdf" target="_blank" data-y="4"><span class="bi">📄</span>RL Course Complete</a>
-          <a class="bl" href="rl/SuttonBartoIPRLBook2ndEd.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Sutton &amp; Barto RL – 2nd Ed.</a>
-        </div>
-      </div>
-
-      <div class="flat" id="y4-pe">
-        <div class="flat-h" onclick="toggleFlat('y4-pe')"><div class="flat-dot"></div><div class="flat-name">Prompt Engineering</div><div class="flat-arr">▶</div></div>
-        <div class="flat-body">
-          <a class="bl" href="pe/book_english_version.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Prompt Engineering Book</a>
-          <a class="bl" href="pe/prompt-engineering-playbook-beta-v3.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Prompt Engineering Playbook</a>
-          <a class="bl" href="pe/The Art of Asking ChatGPT for High-Quality Answers--Ibrahim_John.pdf" target="_blank" data-y="4"><span class="bi">📄</span>The Art of Asking ChatGPT</a>
-        </div>
-      </div>
-
+      <div class="flat" id="y4-bd"><div class="flat-h" onclick="tFlat('y4-bd')"><div class="flat-dot"></div><div class="flat-name">Big Data Analytics</div><div class="flat-arr">▶</div></div><div class="flat-body">
+        <a class="bl" href="bd/Big Data Analytics by RaJ Kamal, Preethi Saxena,TMH.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Big Data Analytics – Raj Kamal</a>
+        <a class="bl" href="bd/Data Science _ Big Data Analytics ( PDFDrive ).pdf" target="_blank" data-y="4"><span class="bi">📄</span>Data Science &amp; Big Data</a>
+        <a class="bl" href="bd/IntroductiontoBigDataAnalytics.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Intro to Big Data Analytics</a>
+      </div></div>
+      <div class="flat" id="y4-bc"><div class="flat-h" onclick="tFlat('y4-bc')"><div class="flat-dot"></div><div class="flat-name">Blockchain Technology</div><div class="flat-arr">▶</div></div><div class="flat-body">
+        <a class="bl" href="blockchain/BlockchainTextBook.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Blockchain Textbook</a>
+        <a class="bl" href="blockchain/Mastering_Blockchain_2nd_Edition.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Mastering Blockchain – 2nd Ed.</a>
+        <a class="bl" href="blockchain/River-Blockchain.pdf" target="_blank" data-y="4"><span class="bi">📄</span>River Blockchain</a>
+      </div></div>
+      <div class="flat" id="y4-hrm"><div class="flat-h" onclick="tFlat('y4-hrm')"><div class="flat-dot"></div><div class="flat-name">Human Resource Management</div><div class="flat-arr">▶</div></div><div class="flat-body">
+        <a class="bl" href="HRM/Human_Resource_Management_32088.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Human Resource Management</a>
+        <a class="bl" href="HRM/Human-Resource-Management-by-Pravin-Durai.pdf" target="_blank" data-y="4"><span class="bi">📄</span>HRM – Pravin Durai</a>
+        <a class="bl" href="HRM/Symbiosis_HumanResourceManagement.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Symbiosis HRM</a>
+      </div></div>
+      <div class="flat" id="y4-rl"><div class="flat-h" onclick="tFlat('y4-rl')"><div class="flat-dot"></div><div class="flat-name">Reinforcement Learning</div><div class="flat-arr">▶</div></div><div class="flat-body">
+        <a class="bl" href="rl/BartoSutton.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Reinforcement Learning – Barto &amp; Sutton</a>
+        <a class="bl" href="rl/RLCOURSECOMPLETE.pdf" target="_blank" data-y="4"><span class="bi">📄</span>RL Course Complete</a>
+        <a class="bl" href="rl/SuttonBartoIPRLBook2ndEd.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Sutton &amp; Barto RL – 2nd Ed.</a>
+      </div></div>
+      <div class="flat" id="y4-pe"><div class="flat-h" onclick="tFlat('y4-pe')"><div class="flat-dot"></div><div class="flat-name">Prompt Engineering</div><div class="flat-arr">▶</div></div><div class="flat-body">
+        <a class="bl" href="pe/book_english_version.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Prompt Engineering Book</a>
+        <a class="bl" href="pe/prompt-engineering-playbook-beta-v3.pdf" target="_blank" data-y="4"><span class="bi">📄</span>Prompt Engineering Playbook</a>
+        <a class="bl" href="pe/The Art of Asking ChatGPT for High-Quality Answers--Ibrahim_John.pdf" target="_blank" data-y="4"><span class="bi">📄</span>The Art of Asking ChatGPT</a>
+      </div></div>
     </div>
   </div>
-
-  <!-- SEMESTER 2 — offline internship + final year project -->
   <div class="sem sem-special" id="y4s2">
-    <div class="sem-h" onclick="toggleSem('y4s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2 — Internship &amp; Project</div><div class="sem-arr">▶</div></div>
+    <div class="sem-h" onclick="tS('y4s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2 — Internship &amp; Project</div><div class="sem-arr">▶</div></div>
     <div class="sem-body">
-
-      <div class="flat" id="y4-intern">
-        <div class="flat-h" onclick="toggleFlat('y4-intern')"><div class="flat-dot"></div><div class="flat-name">🏢 Offline Internship</div><div class="flat-arr">▶</div></div>
-        <div class="flat-body">
-          <a class="bl" href="https://internshala.com" target="_blank" data-y="4"><span class="bi">🌐</span>Internshala – Find Internships</a>
-          <a class="bl" href="https://www.linkedin.com/jobs/" target="_blank" data-y="4"><span class="bi">🌐</span>LinkedIn – Job &amp; Internship Search</a>
-          <a class="bl" href="https://unstop.com" target="_blank" data-y="4"><span class="bi">🌐</span>Unstop – Competitions &amp; Internships</a>
-          <a class="bl" href="https://www.naukri.com/internship" target="_blank" data-y="4"><span class="bi">🌐</span>Naukri – Internship Listings</a>
-          <a class="bl" href="https://letsintern.com" target="_blank" data-y="4"><span class="bi">🌐</span>LetsIntern – College Internships</a>
-        </div>
-      </div>
-
-      <div class="flat" id="y4-project">
-        <div class="flat-h" onclick="toggleFlat('y4-project')"><div class="flat-dot"></div><div class="flat-name">🎓 Final Year Project</div><div class="flat-arr">▶</div></div>
-        <div class="flat-body">
-          <a class="bl" href="https://github.com/explore" target="_blank" data-y="4"><span class="bi">🌐</span>GitHub Explore – Project Ideas</a>
-          <a class="bl" href="https://paperswithcode.com" target="_blank" data-y="4"><span class="bi">🌐</span>Papers With Code – Research Projects</a>
-          <a class="bl" href="https://www.kaggle.com/datasets" target="_blank" data-y="4"><span class="bi">🌐</span>Kaggle – Datasets &amp; Projects</a>
-          <a class="bl" href="https://ieee.org/publications/" target="_blank" data-y="4"><span class="bi">🌐</span>IEEE – Reference Papers</a>
-          <a class="bl" href="https://scholar.google.com" target="_blank" data-y="4"><span class="bi">🌐</span>Google Scholar – Literature Review</a>
-        </div>
-      </div>
-
+      <div class="flat" id="y4-intern"><div class="flat-h" onclick="tFlat('y4-intern')"><div class="flat-dot"></div><div class="flat-name">🏢 Offline Internship</div><div class="flat-arr">▶</div></div><div class="flat-body">
+        <a class="bl" href="https://internshala.com" target="_blank" data-y="4"><span class="bi">🌐</span>Internshala – Find Internships</a>
+        <a class="bl" href="https://www.linkedin.com/jobs/" target="_blank" data-y="4"><span class="bi">🌐</span>LinkedIn – Internship Search</a>
+        <a class="bl" href="https://unstop.com" target="_blank" data-y="4"><span class="bi">🌐</span>Unstop – Competitions &amp; Internships</a>
+        <a class="bl" href="https://www.naukri.com/internship" target="_blank" data-y="4"><span class="bi">🌐</span>Naukri – Internship Listings</a>
+      </div></div>
+      <div class="flat" id="y4-proj"><div class="flat-h" onclick="tFlat('y4-proj')"><div class="flat-dot"></div><div class="flat-name">🎓 Final Year Project</div><div class="flat-arr">▶</div></div><div class="flat-body">
+        <a class="bl" href="https://github.com/explore" target="_blank" data-y="4"><span class="bi">🌐</span>GitHub Explore – Project Ideas</a>
+        <a class="bl" href="https://paperswithcode.com" target="_blank" data-y="4"><span class="bi">🌐</span>Papers With Code – Research</a>
+        <a class="bl" href="https://www.kaggle.com/datasets" target="_blank" data-y="4"><span class="bi">🌐</span>Kaggle – Datasets &amp; Projects</a>
+        <a class="bl" href="https://scholar.google.com" target="_blank" data-y="4"><span class="bi">🌐</span>Google Scholar – Papers</a>
+        <a class="bl" href="https://ieee.org/publications/" target="_blank" data-y="4"><span class="bi">🌐</span>IEEE – Reference Publications</a>
+      </div></div>
     </div>
   </div>
+</div></div>
 
-</div>
-</div>
+</div></div><!-- end year-cols / tab-books -->
 
-</div><!-- end year-cols -->
-</div><!-- end tab-books -->
-
-<!-- ══════════════════════════════════════
-     SYLLABUS TAB
-══════════════════════════════════════ -->
+<!-- ══════════════════ SYLLABUS TAB ══════════════════ -->
 <div id="tab-syllabus" class="tab-panel">
 <div class="two-grid">
 
-  <div class="ycard yc1" id="ys1">
-    <div class="yhead" onclick="toggleCard('ys1')"><div class="yicon">🎯</div><div class="yinfo"><div class="yname">1st Year</div><div class="ysub">Syllabus PDFs</div></div><div class="ytog">▼</div></div>
+  <div class="ycard yc1" id="syl-y1">
+    <div class="yhead" onclick="tCard('syl-y1')"><div class="yicon">🎯</div><div class="yinfo"><div class="yname">1st Year</div><div class="ysub">Syllabus PDFs</div></div><div class="ytog">▼</div></div>
     <div class="ybody">
-      <div class="sem" id="ys1s1"><div class="sem-h" onclick="toggleSem('ys1s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
+      <div class="sem" id="syl-y1s1"><div class="sem-h" onclick="tS('syl-y1s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
         <a class="sl" href="syllabus1/23ES11T3%E2%80%93BASIC%20ELECTRICAL%20%26%20ELECTRONICS%20ENGINEERING.pdf" target="_blank"><span class="bi">📋</span>Basic Electrical &amp; Electronics Engg.</a>
         <a class="sl" href="syllabus1/23BS11T1-ENGINEERING PHYSICS.pdf" target="_blank"><span class="bi">📋</span>Engineering Physics</a>
         <a class="sl" href="syllabus1/23ES11T4%E2%80%93ENGINEERING%20GRAPHICS.pdf" target="_blank"><span class="bi">📋</span>Engineering Graphics</a>
@@ -401,7 +347,7 @@
         <a class="sl" href="syllabus1/23BS11T3-LINEAR ALGEBRA & CALCULUS.pdf" target="_blank"><span class="bi">📋</span>Linear Algebra &amp; Calculus</a>
         <a class="sl" href="syllabus1/23ES11P3%E2%80%93IT%20WORKSHOP.pdf" target="_blank"><span class="bi">📋</span>IT Workshop</a>
       </div></div>
-      <div class="sem" id="ys1s2"><div class="sem-h" onclick="toggleSem('ys1s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div><div class="sem-body">
+      <div class="sem" id="syl-y1s2"><div class="sem-h" onclick="tS('syl-y1s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div><div class="sem-body">
         <a class="sl" href="syllabus1/23BS12T2%20-%20CHEMISTRY.pdf" target="_blank"><span class="bi">📋</span>Chemistry</a>
         <a class="sl" href="syllabus1/23ES12T1 - BASIC CIVIL AND MECHANICAL ENGINEERING.pdf" target="_blank"><span class="bi">📋</span>Basic Civil &amp; Mechanical Engg.</a>
         <a class="sl" href="syllabus1/23BS12T5 - COMMUNICATIVE ENGLISH.pdf" target="_blank"><span class="bi">📋</span>Communicative English</a>
@@ -411,10 +357,10 @@
     </div>
   </div>
 
-  <div class="ycard yc2" id="ys2">
-    <div class="yhead" onclick="toggleCard('ys2')"><div class="yicon">🚀</div><div class="yinfo"><div class="yname">2nd Year</div><div class="ysub">Syllabus PDFs</div></div><div class="ytog">▼</div></div>
+  <div class="ycard yc2" id="syl-y2">
+    <div class="yhead" onclick="tCard('syl-y2')"><div class="yicon">🚀</div><div class="yinfo"><div class="yname">2nd Year</div><div class="ysub">Syllabus PDFs</div></div><div class="ytog">▼</div></div>
     <div class="ybody">
-      <div class="sem" id="ys2s1"><div class="sem-h" onclick="toggleSem('ys2s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
+      <div class="sem" id="syl-y2s1"><div class="sem-h" onclick="tS('syl-y2s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
         <a class="sl" href="syllabus1/23CS21T2 - OBJECT-ORIENTED PROGRAMMING THROUGH JAVA.pdf" target="_blank"><span class="bi">📋</span>OOP Through Java</a>
         <a class="sl" href="syllabus1/23AC21T1- ENVIRONMENTAL SCIENCE.pdf" target="_blank"><span class="bi">📋</span>Environmental Science</a>
         <a class="sl" href="syllabus1/23AD21T1 - DATABASE MANAGEMENT SYSTEMS.pdf" target="_blank"><span class="bi">📋</span>Database Management Systems</a>
@@ -422,7 +368,7 @@
         <a class="sl" href="syllabus1/23CS21T1 - ADVANCED DATA STRUCTURES & ALGORITHM ANALYSIS.pdf" target="_blank"><span class="bi">📋</span>Advanced DSA</a>
         <a class="sl" href="syllabus1/23BS21T6 - UNIVERSAL HUMAN VALUES–UNDERSTANDING HARMONY AND ETHICAL HUMAN CONDUCT.pdf" target="_blank"><span class="bi">📋</span>UHV &amp; Ethical Conduct</a>
       </div></div>
-      <div class="sem" id="ys2s2"><div class="sem-h" onclick="toggleSem('ys2s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div><div class="sem-body">
+      <div class="sem" id="syl-y2s2"><div class="sem-h" onclick="tS('syl-y2s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div><div class="sem-body">
         <a class="sl" href="syllabus1/23BS22T3 - STATISTICAL METHODS FOR DATA SCIENCE.pdf" target="_blank"><span class="bi">📋</span>Statistical Methods for DS</a>
         <a class="sl" href="syllabus1/23CS22T2 - DIGITAL LOGIC & COMPUTER ORGANIZATION.pdf" target="_blank"><span class="bi">📋</span>Digital Logic &amp; Computer Org.</a>
         <a class="sl" href="syllabus1/23BS22T5 - BUSINESS ENVIRONMENT.pdf" target="_blank"><span class="bi">📋</span>Business Environment</a>
@@ -433,44 +379,42 @@
     </div>
   </div>
 
-  <div class="ycard yc3" id="ys3">
-    <div class="yhead" onclick="toggleCard('ys3')"><div class="yicon">⚡</div><div class="yinfo"><div class="yname">3rd Year</div><div class="ysub">Coming Soon</div></div><div class="ytog">▼</div></div>
+  <div class="ycard yc3" id="syl-y3">
+    <div class="yhead" onclick="tCard('syl-y3')"><div class="yicon">⚡</div><div class="yinfo"><div class="yname">3rd Year</div><div class="ysub">Coming Soon</div></div><div class="ytog">▼</div></div>
     <div class="ybody"><p style="color:var(--muted);font-size:.82rem;padding:12px 4px;text-align:center">📅 Syllabus will be updated soon.</p></div>
   </div>
 
-  <div class="ycard yc4" id="ys4">
-    <div class="yhead" onclick="toggleCard('ys4')"><div class="yicon">🏆</div><div class="yinfo"><div class="yname">4th Year</div><div class="ysub">Coming Soon</div></div><div class="ytog">▼</div></div>
+  <div class="ycard yc4" id="syl-y4">
+    <div class="yhead" onclick="tCard('syl-y4')"><div class="yicon">🏆</div><div class="yinfo"><div class="yname">4th Year</div><div class="ysub">Coming Soon</div></div><div class="ytog">▼</div></div>
     <div class="ybody"><p style="color:var(--muted);font-size:.82rem;padding:12px 4px;text-align:center">📅 Syllabus will be updated soon.</p></div>
   </div>
 
 </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ONLINE TAB
-══════════════════════════════════════ -->
+<!-- ══════════════════ ONLINE TAB ══════════════════ -->
 <div id="tab-online" class="tab-panel">
 <div class="two-grid">
 
-  <div class="ycard yc1" id="yo1">
-    <div class="yhead" onclick="toggleCard('yo1')"><div class="yicon">🎯</div><div class="yinfo"><div class="yname">1st Year</div><div class="ysub">Online Resources</div></div><div class="ytog">▼</div></div>
+  <div class="ycard yc1" id="onl-y1">
+    <div class="yhead" onclick="tCard('onl-y1')"><div class="yicon">🎯</div><div class="yinfo"><div class="yname">1st Year</div><div class="ysub">Online Resources</div></div><div class="ytog">▼</div></div>
     <div class="ybody">
-      <div class="sem" id="yo1s1"><div class="sem-h" onclick="toggleSem('yo1s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
-        <div class="subj" id="yo1-bee"><div class="subj-h" onclick="toggleSubj('yo1-bee')"><div class="subj-dot"></div><div class="subj-name">Basic Electrical &amp; Electronics</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="sem" id="onl-y1s1"><div class="sem-h" onclick="tS('onl-y1s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
+        <div class="subj" id="onl-y1-bee"><div class="subj-h" onclick="tSubj('onl-y1-bee')"><div class="subj-dot"></div><div class="subj-name">Basic Electrical &amp; Electronics</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.geeksforgeeks.org/basic-electrical-and-electronics-engineering/" target="_blank"><span class="bi">🌐</span>GeeksforGeeks – BEE</a>
           <a class="pl" href="https://nptel.ac.in/courses/108105053" target="_blank"><span class="bi">🎓</span>NPTEL – BEE Course</a>
         </div></div>
-        <div class="subj" id="yo1-ip"><div class="subj-h" onclick="toggleSubj('yo1-ip')"><div class="subj-dot"></div><div class="subj-name">Introduction to Programming</div><div class="subj-arr">▶</div></div><div class="subj-body">
+        <div class="subj" id="onl-y1-ip"><div class="subj-h" onclick="tSubj('onl-y1-ip')"><div class="subj-dot"></div><div class="subj-name">Introduction to Programming</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.geeksforgeeks.org/c-programming-language/" target="_blank"><span class="bi">🌐</span>GeeksforGeeks – C Programming</a>
           <a class="pl" href="https://www.w3schools.com/c/" target="_blank"><span class="bi">🌐</span>W3Schools – C Tutorial</a>
         </div></div>
-        <div class="subj" id="yo1-m1"><div class="subj-h" onclick="toggleSubj('yo1-m1')"><div class="subj-dot"></div><div class="subj-name">Linear Algebra &amp; Calculus</div><div class="subj-arr">▶</div></div><div class="subj-body">
+        <div class="subj" id="onl-y1-m1"><div class="subj-h" onclick="tSubj('onl-y1-m1')"><div class="subj-dot"></div><div class="subj-name">Linear Algebra &amp; Calculus</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.khanacademy.org/math/linear-algebra" target="_blank"><span class="bi">🌐</span>Khan Academy – Linear Algebra</a>
           <a class="pl" href="https://www.khanacademy.org/math/calculus-1" target="_blank"><span class="bi">🌐</span>Khan Academy – Calculus</a>
         </div></div>
       </div></div>
-      <div class="sem" id="yo1s2"><div class="sem-h" onclick="toggleSem('yo1s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div><div class="sem-body">
-        <div class="subj" id="yo1-ds"><div class="subj-h" onclick="toggleSubj('yo1-ds')"><div class="subj-dot"></div><div class="subj-name">Data Structures</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="sem" id="onl-y1s2"><div class="sem-h" onclick="tS('onl-y1s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div><div class="sem-body">
+        <div class="subj" id="onl-y1-ds"><div class="subj-h" onclick="tSubj('onl-y1-ds')"><div class="subj-dot"></div><div class="subj-name">Data Structures</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.geeksforgeeks.org/data-structures/" target="_blank"><span class="bi">🌐</span>GeeksforGeeks – Data Structures</a>
           <a class="pl" href="https://visualgo.net" target="_blank"><span class="bi">🌐</span>VisuAlgo – DS Visualizer</a>
         </div></div>
@@ -478,29 +422,29 @@
     </div>
   </div>
 
-  <div class="ycard yc2" id="yo2">
-    <div class="yhead" onclick="toggleCard('yo2')"><div class="yicon">🚀</div><div class="yinfo"><div class="yname">2nd Year</div><div class="ysub">Online Resources</div></div><div class="ytog">▼</div></div>
+  <div class="ycard yc2" id="onl-y2">
+    <div class="yhead" onclick="tCard('onl-y2')"><div class="yicon">🚀</div><div class="yinfo"><div class="yname">2nd Year</div><div class="ysub">Online Resources</div></div><div class="ytog">▼</div></div>
     <div class="ybody">
-      <div class="sem" id="yo2s1"><div class="sem-h" onclick="toggleSem('yo2s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
-        <div class="subj" id="yo2-java"><div class="subj-h" onclick="toggleSubj('yo2-java')"><div class="subj-dot"></div><div class="subj-name">Java Programming</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="sem" id="onl-y2s1"><div class="sem-h" onclick="tS('onl-y2s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
+        <div class="subj" id="onl-y2-java"><div class="subj-h" onclick="tSubj('onl-y2-java')"><div class="subj-dot"></div><div class="subj-name">Java Programming</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.geeksforgeeks.org/java/" target="_blank"><span class="bi">🌐</span>GeeksforGeeks – Java</a>
           <a class="pl" href="https://www.javatpoint.com/java-tutorial" target="_blank"><span class="bi">🌐</span>JavaTpoint</a>
         </div></div>
-        <div class="subj" id="yo2-dbms"><div class="subj-h" onclick="toggleSubj('yo2-dbms')"><div class="subj-dot"></div><div class="subj-name">DBMS</div><div class="subj-arr">▶</div></div><div class="subj-body">
+        <div class="subj" id="onl-y2-dbms"><div class="subj-h" onclick="tSubj('onl-y2-dbms')"><div class="subj-dot"></div><div class="subj-name">DBMS</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.geeksforgeeks.org/dbms/" target="_blank"><span class="bi">🌐</span>GeeksforGeeks – DBMS</a>
           <a class="pl" href="https://www.sqlzoo.net" target="_blank"><span class="bi">🌐</span>SQLZoo – Practice SQL</a>
         </div></div>
-        <div class="subj" id="yo2-adsa"><div class="subj-h" onclick="toggleSubj('yo2-adsa')"><div class="subj-dot"></div><div class="subj-name">Advanced DSA</div><div class="subj-arr">▶</div></div><div class="subj-body">
+        <div class="subj" id="onl-y2-adsa"><div class="subj-h" onclick="tSubj('onl-y2-adsa')"><div class="subj-dot"></div><div class="subj-name">Advanced DSA</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.geeksforgeeks.org/advanced-data-structures/" target="_blank"><span class="bi">🌐</span>GeeksforGeeks – Advanced DSA</a>
           <a class="pl" href="https://leetcode.com/" target="_blank"><span class="bi">🌐</span>LeetCode</a>
         </div></div>
       </div></div>
-      <div class="sem" id="yo2s2"><div class="sem-h" onclick="toggleSem('yo2s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div><div class="sem-body">
-        <div class="subj" id="yo2-ai"><div class="subj-h" onclick="toggleSubj('yo2-ai')"><div class="subj-dot"></div><div class="subj-name">Artificial Intelligence</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="sem" id="onl-y2s2"><div class="sem-h" onclick="tS('onl-y2s2')"><div class="sem-dot"></div><div class="sem-name">Semester 2</div><div class="sem-arr">▶</div></div><div class="sem-body">
+        <div class="subj" id="onl-y2-ai"><div class="subj-h" onclick="tSubj('onl-y2-ai')"><div class="subj-dot"></div><div class="subj-name">Artificial Intelligence</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.coursera.org/learn/ai-for-everyone" target="_blank"><span class="bi">🌐</span>Coursera – AI for Everyone</a>
           <a class="pl" href="https://www.geeksforgeeks.org/artificial-intelligence/" target="_blank"><span class="bi">🌐</span>GeeksforGeeks – AI</a>
         </div></div>
-        <div class="subj" id="yo2-ids"><div class="subj-h" onclick="toggleSubj('yo2-ids')"><div class="subj-dot"></div><div class="subj-name">Intro to Data Science</div><div class="subj-arr">▶</div></div><div class="subj-body">
+        <div class="subj" id="onl-y2-ids"><div class="subj-h" onclick="tSubj('onl-y2-ids')"><div class="subj-dot"></div><div class="subj-name">Intro to Data Science</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.kaggle.com/learn" target="_blank"><span class="bi">🌐</span>Kaggle Learn</a>
           <a class="pl" href="https://www.coursera.org/specializations/jhu-data-science" target="_blank"><span class="bi">🌐</span>Coursera – Data Science</a>
         </div></div>
@@ -508,19 +452,19 @@
     </div>
   </div>
 
-  <div class="ycard yc3" id="yo3">
-    <div class="yhead" onclick="toggleCard('yo3')"><div class="yicon">⚡</div><div class="yinfo"><div class="yname">3rd Year</div><div class="ysub">Online Resources</div></div><div class="ytog">▼</div></div>
+  <div class="ycard yc3" id="onl-y3">
+    <div class="yhead" onclick="tCard('onl-y3')"><div class="yicon">⚡</div><div class="yinfo"><div class="yname">3rd Year</div><div class="ysub">Online Resources</div></div><div class="ytog">▼</div></div>
     <div class="ybody">
-      <div class="sem" id="yo3s1"><div class="sem-h" onclick="toggleSem('yo3s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
-        <div class="subj" id="yo3-ml"><div class="subj-h" onclick="toggleSubj('yo3-ml')"><div class="subj-dot"></div><div class="subj-name">Machine Learning</div><div class="subj-arr">▶</div></div><div class="subj-body">
+      <div class="sem" id="onl-y3s1"><div class="sem-h" onclick="tS('onl-y3s1')"><div class="sem-dot"></div><div class="sem-name">Semester 1</div><div class="sem-arr">▶</div></div><div class="sem-body">
+        <div class="subj" id="onl-y3-ml"><div class="subj-h" onclick="tSubj('onl-y3-ml')"><div class="subj-dot"></div><div class="subj-name">Machine Learning</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.coursera.org/learn/machine-learning" target="_blank"><span class="bi">🌐</span>Coursera – Andrew Ng ML</a>
           <a class="pl" href="https://www.kaggle.com/learn/intro-to-machine-learning" target="_blank"><span class="bi">🌐</span>Kaggle – Intro to ML</a>
         </div></div>
-        <div class="subj" id="yo3-dl"><div class="subj-h" onclick="toggleSubj('yo3-dl')"><div class="subj-dot"></div><div class="subj-name">Deep Learning</div><div class="subj-arr">▶</div></div><div class="subj-body">
+        <div class="subj" id="onl-y3-dl"><div class="subj-h" onclick="tSubj('onl-y3-dl')"><div class="subj-dot"></div><div class="subj-name">Deep Learning</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://www.deeplearning.ai/" target="_blank"><span class="bi">🌐</span>DeepLearning.AI</a>
           <a class="pl" href="https://www.fast.ai/" target="_blank"><span class="bi">🌐</span>Fast.ai</a>
         </div></div>
-        <div class="subj" id="yo3-nlp"><div class="subj-h" onclick="toggleSubj('yo3-nlp')"><div class="subj-dot"></div><div class="subj-name">Natural Language Processing</div><div class="subj-arr">▶</div></div><div class="subj-body">
+        <div class="subj" id="onl-y3-nlp"><div class="subj-h" onclick="tSubj('onl-y3-nlp')"><div class="subj-dot"></div><div class="subj-name">NLP</div><div class="subj-arr">▶</div></div><div class="subj-body">
           <a class="pl" href="https://huggingface.co/learn/nlp-course" target="_blank"><span class="bi">🌐</span>HuggingFace NLP Course</a>
           <a class="pl" href="https://www.nltk.org/book/" target="_blank"><span class="bi">🌐</span>NLTK Book Online</a>
         </div></div>
@@ -528,14 +472,14 @@
     </div>
   </div>
 
-  <div class="ycard yc4" id="yo4">
-    <div class="yhead" onclick="toggleCard('yo4')"><div class="yicon">🏆</div><div class="yinfo"><div class="yname">4th Year</div><div class="ysub">Online Resources</div></div><div class="ytog">▼</div></div>
+  <div class="ycard yc4" id="onl-y4">
+    <div class="yhead" onclick="tCard('onl-y4')"><div class="yicon">🏆</div><div class="yinfo"><div class="yname">4th Year</div><div class="ysub">Online Resources</div></div><div class="ytog">▼</div></div>
     <div class="ybody">
-      <div class="flat" id="yo4-bd"><div class="flat-h" onclick="toggleFlat('yo4-bd')"><div class="flat-dot"></div><div class="flat-name">Big Data</div><div class="flat-arr">▶</div></div><div class="flat-body">
+      <div class="flat" id="onl-y4-bd"><div class="flat-h" onclick="tFlat('onl-y4-bd')"><div class="flat-dot"></div><div class="flat-name">Big Data</div><div class="flat-arr">▶</div></div><div class="flat-body">
         <a class="pl" href="https://www.coursera.org/specializations/big-data" target="_blank"><span class="bi">🌐</span>Coursera – Big Data</a>
         <a class="pl" href="https://www.udemy.com/course/the-ultimate-hands-on-hadoop/" target="_blank"><span class="bi">🌐</span>Udemy – Hadoop</a>
       </div></div>
-      <div class="flat" id="yo4-rl"><div class="flat-h" onclick="toggleFlat('yo4-rl')"><div class="flat-dot"></div><div class="flat-name">Reinforcement Learning</div><div class="flat-arr">▶</div></div><div class="flat-body">
+      <div class="flat" id="onl-y4-rl"><div class="flat-h" onclick="tFlat('onl-y4-rl')"><div class="flat-dot"></div><div class="flat-name">Reinforcement Learning</div><div class="flat-arr">▶</div></div><div class="flat-body">
         <a class="pl" href="https://www.coursera.org/specializations/reinforcement-learning" target="_blank"><span class="bi">🌐</span>Coursera – RL Specialization</a>
         <a class="pl" href="https://spinningup.openai.com/" target="_blank"><span class="bi">🌐</span>OpenAI Spinning Up</a>
       </div></div>
@@ -545,7 +489,80 @@
 </div>
 </div>
 
-<footer><b>© 2024 NBKR Institute of Science and Technology</b> · AI&amp;DS &amp; IT Department</footer>
+<!-- ══════════════════ TOOLS TAB ══════════════════ -->
+<div id="tab-tools" class="tab-panel">
+
+<div class="section-wrap">
+  <div class="section-title">💻 Coding &amp; Practice Platforms</div>
+</div>
+<div class="tools-grid">
+  <a class="tool-card" href="https://leetcode.com" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">⚡</div><div class="tool-info"><div class="tool-name">LeetCode</div><div class="tool-desc">DSA practice problems</div></div></a>
+  <a class="tool-card" href="https://www.hackerrank.com" target="_blank"><div class="tool-icon" style="background:rgba(16,185,129,.12)">🏆</div><div class="tool-info"><div class="tool-name">HackerRank</div><div class="tool-desc">Coding challenges</div></div></a>
+  <a class="tool-card" href="https://www.codechef.com" target="_blank"><div class="tool-icon" style="background:rgba(139,92,246,.12)">👨‍🍳</div><div class="tool-info"><div class="tool-name">CodeChef</div><div class="tool-desc">Competitive programming</div></div></a>
+  <a class="tool-card" href="https://codeforces.com" target="_blank"><div class="tool-icon" style="background:rgba(59,130,246,.12)">🔵</div><div class="tool-info"><div class="tool-name">Codeforces</div><div class="tool-desc">Contests &amp; problems</div></div></a>
+  <a class="tool-card" href="https://www.geeksforgeeks.org" target="_blank"><div class="tool-icon" style="background:rgba(16,185,129,.12)">📗</div><div class="tool-info"><div class="tool-name">GeeksforGeeks</div><div class="tool-desc">CS concepts &amp; tutorials</div></div></a>
+  <a class="tool-card" href="https://www.w3schools.com" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">🌐</div><div class="tool-info"><div class="tool-name">W3Schools</div><div class="tool-desc">Web dev tutorials</div></div></a>
+</div>
+
+<div class="section-wrap">
+  <div class="section-title">🤖 AI &amp; ML Tools</div>
+</div>
+<div class="tools-grid">
+  <a class="tool-card" href="https://colab.research.google.com" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">📓</div><div class="tool-info"><div class="tool-name">Google Colab</div><div class="tool-desc">Free GPU notebooks</div></div></a>
+  <a class="tool-card" href="https://www.kaggle.com" target="_blank"><div class="tool-icon" style="background:rgba(59,130,246,.12)">📊</div><div class="tool-info"><div class="tool-name">Kaggle</div><div class="tool-desc">Datasets &amp; competitions</div></div></a>
+  <a class="tool-card" href="https://huggingface.co" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">🤗</div><div class="tool-info"><div class="tool-name">HuggingFace</div><div class="tool-desc">Models &amp; datasets</div></div></a>
+  <a class="tool-card" href="https://paperswithcode.com" target="_blank"><div class="tool-icon" style="background:rgba(139,92,246,.12)">📄</div><div class="tool-info"><div class="tool-name">Papers With Code</div><div class="tool-desc">ML research papers</div></div></a>
+  <a class="tool-card" href="https://www.tensorflow.org" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">🔶</div><div class="tool-info"><div class="tool-name">TensorFlow</div><div class="tool-desc">ML framework docs</div></div></a>
+  <a class="tool-card" href="https://pytorch.org" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">🔥</div><div class="tool-info"><div class="tool-name">PyTorch</div><div class="tool-desc">Deep learning framework</div></div></a>
+</div>
+
+<div class="section-wrap">
+  <div class="section-title">🎓 Free Learning Platforms</div>
+</div>
+<div class="tools-grid">
+  <a class="tool-card" href="https://www.coursera.org" target="_blank"><div class="tool-icon" style="background:rgba(59,130,246,.12)">🎓</div><div class="tool-info"><div class="tool-name">Coursera</div><div class="tool-desc">University-level courses</div></div></a>
+  <a class="tool-card" href="https://nptel.ac.in" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">🏛</div><div class="tool-info"><div class="tool-name">NPTEL</div><div class="tool-desc">IIT &amp; IISc courses</div></div></a>
+  <a class="tool-card" href="https://www.khanacademy.org" target="_blank"><div class="tool-icon" style="background:rgba(16,185,129,.12)">📐</div><div class="tool-info"><div class="tool-name">Khan Academy</div><div class="tool-desc">Maths &amp; science</div></div></a>
+  <a class="tool-card" href="https://www.udemy.com" target="_blank"><div class="tool-icon" style="background:rgba(139,92,246,.12)">📹</div><div class="tool-info"><div class="tool-name">Udemy</div><div class="tool-desc">Video courses</div></div></a>
+  <a class="tool-card" href="https://www.edx.org" target="_blank"><div class="tool-icon" style="background:rgba(59,130,246,.12)">🏫</div><div class="tool-info"><div class="tool-name">edX</div><div class="tool-desc">Free university courses</div></div></a>
+  <a class="tool-card" href="https://swayam.gov.in" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">🇮🇳</div><div class="tool-info"><div class="tool-name">SWAYAM</div><div class="tool-desc">Govt. India courses</div></div></a>
+</div>
+
+<div class="section-wrap">
+  <div class="section-title">🛠 Developer Tools</div>
+</div>
+<div class="tools-grid">
+  <a class="tool-card" href="https://github.com" target="_blank"><div class="tool-icon" style="background:rgba(17,24,39,.1)">🐙</div><div class="tool-info"><div class="tool-name">GitHub</div><div class="tool-desc">Code hosting &amp; version control</div></div></a>
+  <a class="tool-card" href="https://stackoverflow.com" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">💬</div><div class="tool-info"><div class="tool-name">Stack Overflow</div><div class="tool-desc">Dev Q&amp;A community</div></div></a>
+  <a class="tool-card" href="https://replit.com" target="_blank"><div class="tool-icon" style="background:rgba(139,92,246,.12)">🔁</div><div class="tool-info"><div class="tool-name">Replit</div><div class="tool-desc">Online IDE &amp; coding</div></div></a>
+  <a class="tool-card" href="https://www.overleaf.com" target="_blank"><div class="tool-icon" style="background:rgba(16,185,129,.12)">📝</div><div class="tool-info"><div class="tool-name">Overleaf</div><div class="tool-desc">LaTeX report editor</div></div></a>
+  <a class="tool-card" href="https://draw.io" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">📐</div><div class="tool-info"><div class="tool-name">Draw.io</div><div class="tool-desc">Diagrams &amp; flowcharts</div></div></a>
+  <a class="tool-card" href="https://www.figma.com" target="_blank"><div class="tool-icon" style="background:rgba(139,92,246,.12)">🎨</div><div class="tool-info"><div class="tool-name">Figma</div><div class="tool-desc">UI/UX design tool</div></div></a>
+</div>
+
+<div class="section-wrap" style="padding-bottom:40px">
+  <div class="section-title">📑 Research &amp; References</div>
+</div>
+<div class="tools-grid" style="padding-bottom:48px">
+  <a class="tool-card" href="https://scholar.google.com" target="_blank"><div class="tool-icon" style="background:rgba(59,130,246,.12)">🔍</div><div class="tool-info"><div class="tool-name">Google Scholar</div><div class="tool-desc">Academic papers search</div></div></a>
+  <a class="tool-card" href="https://ieee.org" target="_blank"><div class="tool-icon" style="background:rgba(59,130,246,.12)">📡</div><div class="tool-info"><div class="tool-name">IEEE Xplore</div><div class="tool-desc">Technical publications</div></div></a>
+  <a class="tool-card" href="https://arxiv.org" target="_blank"><div class="tool-icon" style="background:rgba(139,92,246,.12)">📜</div><div class="tool-info"><div class="tool-name">arXiv</div><div class="tool-desc">Preprint research papers</div></div></a>
+  <a class="tool-card" href="https://www.researchgate.net" target="_blank"><div class="tool-icon" style="background:rgba(16,185,129,.12)">🔬</div><div class="tool-info"><div class="tool-name">ResearchGate</div><div class="tool-desc">Research community</div></div></a>
+  <a class="tool-card" href="https://www.semanticscholar.org" target="_blank"><div class="tool-icon" style="background:rgba(59,130,246,.12)">🧠</div><div class="tool-info"><div class="tool-name">Semantic Scholar</div><div class="tool-desc">AI-powered research</div></div></a>
+  <a class="tool-card" href="https://www.zotero.org" target="_blank"><div class="tool-icon" style="background:rgba(249,115,22,.12)">📚</div><div class="tool-info"><div class="tool-name">Zotero</div><div class="tool-desc">Reference manager</div></div></a>
+</div>
+
+</div>
+
+<footer>
+  <div class="footer-left"><b>© 2024 NBKR Institute of Science and Technology</b> · AI&amp;DS &amp; IT Department Digital Library</div>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="https://github.com/NARALAMANOJYADAV/library" target="_blank">GitHub</a>
+    <a href="index.html">Back to Top</a>
+  </div>
+</footer>
+
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="toast" id="toast"></div>
 
@@ -557,21 +574,21 @@ function switchTab(n, btn) {
   document.getElementById('tab-' + n).classList.add('active');
   document.querySelectorAll('.np,.mt').forEach(b => {
     const t = b.textContent.toLowerCase();
-    if ((n==='books'&&t.includes('book'))||(n==='syllabus'&&t.includes('syllabus'))||(n==='online'&&t.includes('online')))
+    if ((n==='books'&&t.includes('book'))||(n==='syllabus'&&t.includes('syllabus'))||(n==='online'&&t.includes('online'))||(n==='tools'&&t.includes('tool')))
       b.classList.add('on');
   });
   const pw = document.getElementById('pw');
-  if (pw) pw.style.display = n === 'books' ? '' : 'none';
+  if (pw) pw.style.display = (n === 'books') ? '' : 'none';
   clearSearch();
 }
 
 // YEAR TOGGLE
 function toggleYear(y) {
-  const lbl = document.getElementById('yl' + y);
-  const panel = document.getElementById('yp' + y);
-  const isHidden = panel.classList.contains('hidden');
-  panel.classList.toggle('hidden', !isHidden);
-  lbl.classList.toggle('closed', !isHidden);
+  const p = document.getElementById('yp' + y);
+  const l = document.getElementById('yl' + y);
+  const hide = !p.classList.contains('hidden');
+  p.classList.toggle('hidden', hide);
+  l.classList.toggle('closed', hide);
 }
 function openYear(y) {
   document.getElementById('yp' + y).classList.remove('hidden');
@@ -579,11 +596,16 @@ function openYear(y) {
   setTimeout(() => document.getElementById('yp' + y).scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
-// INDEPENDENT TOGGLES
-function toggleSem(id)  { document.getElementById(id).classList.toggle('open'); }
-function toggleSubj(id) { document.getElementById(id).classList.toggle('open'); }
-function toggleFlat(id) { document.getElementById(id).classList.toggle('open'); }
-function toggleCard(id) { document.getElementById(id).classList.toggle('open'); }
+// TOGGLES — all with unique IDs, no conflicts
+function tS(id)    { document.getElementById(id).classList.toggle('open'); }
+function tSubj(id) { document.getElementById(id).classList.toggle('open'); }
+function tFlat(id) { document.getElementById(id).classList.toggle('open'); }
+
+// FIX: tCard only toggles the exact card, uses direct child .ybody
+function tCard(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
 
 // SEARCH
 const data = [];
@@ -597,38 +619,39 @@ function doSearch(v) {
   document.getElementById('sc').style.display = q ? 'block' : 'none';
   const pw = document.getElementById('pw');
   const tb = document.getElementById('tab-books');
-  if (!q) { sr.classList.remove('on'); pw.style.display = ''; tb.style.display = ''; return; }
+  if (!q) { sr.classList.remove('on'); if(pw)pw.style.display=''; tb.style.display=''; return; }
   const res = data.filter(d => d.txt.toLowerCase().includes(q));
-  sr.classList.add('on'); pw.style.display = 'none'; tb.style.display = 'none';
-  document.getElementById('src').textContent = res.length ? `${res.length} result${res.length > 1 ? 's' : ''} for "${v}"` : `No results for "${v}"`;
-  const tc = { Book: 'tb', Syllabus: 'ts', Online: 'to' };
+  sr.classList.add('on');
+  if(pw)pw.style.display = 'none';
+  tb.style.display = 'none';
+  document.getElementById('src').textContent = res.length ? `${res.length} result${res.length>1?'s':''} for "${v}"` : `No results for "${v}"`;
+  const tc = { Book:'tb', Syllabus:'ts', Online:'to' };
   document.getElementById('srl').innerHTML = res.length
     ? res.map(r => `<a class="ri" href="${r.href}" target="_blank"><span>${r.type==='Book'?'📄':r.type==='Syllabus'?'📋':'🌐'}</span><span style="flex:1">${r.txt}</span><span class="tag ${tc[r.type]}">${r.type}</span></a>`).join('')
-    : '<div class="no-res">😔 No matches found. Try another keyword.</div>';
+    : '<div class="no-res">😔 No matches. Try another keyword.</div>';
 }
-
 function clearSearch() {
   document.getElementById('si').value = '';
   document.getElementById('sc').style.display = 'none';
   document.getElementById('sr').classList.remove('on');
   const pw = document.getElementById('pw');
-  if (pw) pw.style.display = '';
+  if(pw) pw.style.display = '';
   document.getElementById('tab-books').style.display = '';
 }
 
 // PROGRESS
-const opened = { 1: new Set(), 2: new Set(), 3: new Set(), 4: new Set() };
-const totals  = { 1: 0, 2: 0, 3: 0, 4: 0 };
+const opened = {1:new Set(),2:new Set(),3:new Set(),4:new Set()};
+const totals  = {1:0,2:0,3:0,4:0};
 document.querySelectorAll('.bl[data-y]').forEach(a => {
   const y = +a.dataset.y; totals[y]++;
-  a.addEventListener('click', () => { opened[y].add(a.href); updateProg(); toast('📖 Progress updated!'); });
+  a.addEventListener('click', () => { opened[y].add(a.href); updateProg(); showToast('📖 Progress updated!'); });
 });
 function updateProg() {
   [1,2,3,4].forEach(y => {
-    const pct = totals[y] ? Math.round(opened[y].size / totals[y] * 100) : 0;
-    const f = document.getElementById('pf' + y), t = document.getElementById('pt' + y);
-    if (f) f.style.width = pct + '%';
-    if (t) t.textContent = `${opened[y].size} / ${totals[y]} books`;
+    const pct = totals[y] ? Math.round(opened[y].size/totals[y]*100) : 0;
+    const f = document.getElementById('pf'+y), t = document.getElementById('pt'+y);
+    if(f) f.style.width = pct+'%';
+    if(t) t.textContent = `${opened[y].size} / ${totals[y]} books`;
   });
 }
 window.addEventListener('load', () => setTimeout(updateProg, 500));
@@ -637,33 +660,24 @@ window.addEventListener('load', () => setTimeout(updateProg, 500));
 window.addEventListener('scroll', () => document.getElementById('btt').classList.toggle('show', window.scrollY > 300));
 
 // TOAST
-function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2500); }
+function showToast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2500); }
 
-// FLOATING PARTICLES
-(function createParticles() {
-  const container = document.getElementById('particles');
-  const colors = ['rgba(99,102,241,.5)','rgba(139,92,246,.5)','rgba(59,130,246,.5)','rgba(249,115,22,.4)','rgba(16,185,129,.4)'];
-  for (let i = 0; i < 22; i++) {
+// PARTICLES
+(function() {
+  const c = document.getElementById('pts');
+  const colors = ['rgba(99,102,241,.5)','rgba(139,92,246,.45)','rgba(59,130,246,.45)','rgba(249,115,22,.4)','rgba(16,185,129,.4)','rgba(236,72,153,.4)'];
+  for (let i = 0; i < 24; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
-    const size = Math.random() * 6 + 3;
-    p.style.cssText = `
-      width:${size}px;height:${size}px;
-      left:${Math.random()*100}%;
-      bottom:${-10 - Math.random()*20}px;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      animation-duration:${8 + Math.random()*14}s;
-      animation-delay:${Math.random()*10}s;
-    `;
-    container.appendChild(p);
+    const s = Math.random()*6+3;
+    p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:${-10-Math.random()*20}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${9+Math.random()*14}s;animation-delay:${Math.random()*10}s;`;
+    c.appendChild(p);
   }
 })();
 
-// Open all columns on load
+// Open all year columns on load
 window.addEventListener('DOMContentLoaded', () => {
-  [1,2,3,4].forEach(y => {
-    document.getElementById('yp' + y).classList.remove('hidden');
-  });
+  [1,2,3,4].forEach(y => document.getElementById('yp'+y).classList.remove('hidden'));
 });
 </script>
 </body>
